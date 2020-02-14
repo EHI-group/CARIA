@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/dialog_rounded"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/vmodfru_iv_icono"
+            style="@style/normal_image_icono"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/imagen"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_tv_nombre"
+            app:srcCompat="@drawable/button_plus" />
+
+        <TextView
+            android:id="@+id/vmodfru_tv_cantidad"
+            style="@style/normal_normal_medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="6dp"
+            android:gravity="center"
+            android:text="14"
+            app:layout_constraintEnd_toStartOf="@+id/vmodfru_bt_plus"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/vmodfru_bt_minus"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_iv_icono" />
+
+        <ImageButton
+            android:id="@+id/vmodfru_bt_plus"
+            style="@style/normal_boton_mas_menos"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/vmodfru_tv_cantidad"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toTopOf="@+id/vmodfru_tv_cantidad"
+            app:srcCompat="@drawable/button_plus" />
+
+        <ImageButton
+            android:id="@+id/vmodfru_bt_minus"
+            style="@style/normal_boton_mas_menos"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/vmodfru_tv_cantidad"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="@+id/vmodfru_tv_cantidad"
+            app:srcCompat="@drawable/button_minus" />
+
+        <TextView
+            android:id="@+id/vmodfru_tv_nombre"
+            style="@style/normal_tile_greendark"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/vmodfru_est_comentario"
+            style="@style/normal_normal_medium_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_fruta_modificar_est_comentario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_bt_plus" />
+
+        <EditText
+            android:id="@+id/vmodfru_et_comentario"
+            style="@style/normal_edittext"
+            android:layout_width="0dp"
+            android:layout_height="114dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="13dp"
+            android:ems="10"
+            android:hint="@string/ventana_fruta_modificar_edittext"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_est_comentario" />
+
+        <Button
+            android:id="@+id/vmodfru_bt_aceptar"
+            style="@style/normal_boton"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/boton_actualizar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_et_comentario"
+            app:layout_constraintVertical_bias="0.32999998" />
+
+        <Button
+            android:id="@+id/vmodfru_bt_remover"
+            style="@style/normal_boton"
+            android:layout_marginStart="8dp"
+            android:text="@string/boton_remover"
+            app:layout_constraintBottom_toBottomOf="@+id/vmodfru_bt_aceptar"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toTopOf="@+id/vmodfru_bt_aceptar" />
+
+        <TextView
+            android:id="@+id/vmodfru_est_totalunidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_fruta_modificar_est_total_unidad"
+            android:textAlignment="center"
+            android:textColor="@color/texo_general"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintStart_toStartOf="@+id/guideline4"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_tv_nombre" />
+
+        <TextView
+            android:id="@+id/vmodfru_tv_totalunidad"
+            style="@style/normal_normal_cleargreen"
+            app:layout_constraintEnd_toEndOf="@+id/vmodfru_est_totalunidad"
+            app:layout_constraintStart_toStartOf="@+id/vmodfru_est_totalunidad"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_est_totalunidad" />
+
+        <TextView
+            android:id="@+id/vmodfru_est_totalcompra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_fruta_modificar_est_total_compra"
+            android:textAlignment="center"
+            android:textColor="@color/texo_general"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/vmodfru_est_totalunidad"
+            app:layout_constraintStart_toStartOf="@+id/vmodfru_est_totalunidad"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_tv_totalunidad" />
+
+        <TextView
+            android:id="@+id/vmodfru_tv_totalcompra"
+            style="@style/normal_normal_cleargreen"
+            android:text="15 000 COP"
+            app:layout_constraintEnd_toEndOf="@+id/vmodfru_est_totalunidad"
+            app:layout_constraintStart_toStartOf="@+id/vmodfru_est_totalunidad"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_est_totalcompra" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <SeekBar
+            android:id="@+id/vmodfru_sb_seekbar1"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="2"
+            android:progress="3"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_tv_seekbar1" />
+
+        <TextView
+            android:id="@+id/vmodfru_tv_seekbar1"
+            style="@style/normal_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Muy maduro"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_tv_cantidad" />
+
+        <TextView
+            android:id="@+id/vmodfru_tv_seekbar2"
+            style="@style/normal_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pequeño"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_sb_seekbar1" />
+
+        <SeekBar
+            android:id="@+id/vmodfru_sb_seekbar2"
+            style="@style/Widget.AppCompat.SeekBar.Discrete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:max="2"
+            android:progress="1"
+            app:layout_constraintEnd_toStartOf="@+id/guideline4"
+            app:layout_constraintStart_toStartOf="@+id/guideline13"
+            app:layout_constraintTop_toBottomOf="@+id/vmodfru_tv_seekbar2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

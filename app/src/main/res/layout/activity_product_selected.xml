@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/dialog_rounded"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginBottom="74dp"
+    android:layout_marginTop="74dp"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_fruta_seleccionada_imagebutt_mas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".Activity_Fruta_Seleccionada">
+
+            <TextView
+                android:id="@+id/aprosel_tv_nombre"
+                style="@style/normal_tile_greendark"
+                android:layout_width="0dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/nunito_semibold"
+                android:text="Product Name"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/aprosel_iv_icono"
+                style="@style/normal_image_icono"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/imagen"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/aprosel_tv_unidad"
+                style="@style/normal_normal_cleargreen"
+                android:fontFamily="@font/nunito_bold"
+                android:text="1"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="@+id/aprosel_ib_plus"
+                app:layout_constraintEnd_toStartOf="@+id/aprosel_ib_plus"
+                app:layout_constraintStart_toEndOf="@+id/aprosel_ib_minus"
+                app:layout_constraintTop_toTopOf="@+id/aprosel_ib_plus" />
+
+            <TextView
+                android:id="@+id/aprosel_tv_total"
+                style="@style/normal_normal_cleargreen"
+                android:layout_width="wrap_content"
+                android:layout_marginStart="3dp"
+                android:fontFamily="@font/nunito"
+                android:text="9.999"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView43"
+                app:layout_constraintStart_toEndOf="@+id/textView43"
+                app:layout_constraintTop_toTopOf="@+id/textView43" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.96" />
+
+
+            <ImageButton
+                android:id="@+id/aprosel_ib_plus"
+                style="@style/normal_boton_mas_menos"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="60dp"
+                android:contentDescription="@string/imagen"
+                app:layout_constraintBottom_toBottomOf="@+id/aprosel_ib_minus"
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toTopOf="@+id/aprosel_ib_minus"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/button_plus_morado" />
+
+            <ImageButton
+                android:id="@+id/aprosel_ib_minus"
+                style="@style/normal_boton_mas_menos"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="36dp"
+                android:contentDescription="@string/imagen"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/textView43"
+                app:srcCompat="@drawable/button_minus_morado" />
+
+            <TextView
+                android:id="@+id/aprosel_tv_descripcion"
+                style="@style/normal_normal_medium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="@string/works"
+                android:fontFamily="@font/nunito"
+                android:text="9999 kg"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/aprosel_tv_nombre"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_tv_nombre" />
+
+            <TextView
+                android:id="@+id/aprosel_est_beneficios"
+                style="@style/normal_normal_cleargreen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/nunito_light"
+                android:text="@string/activity_fruta_seleccionada_est_beneficios"
+                android:textAlignment="viewStart"
+                android:textColor="@android:color/black"
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_bt_ingresar" />
+
+            <SeekBar
+                android:id="@+id/aprosel_sb_slider2"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:max="2"
+                android:progress="1"
+                app:layout_constraintEnd_toEndOf="@+id/aprosel_tv_slider2"
+                app:layout_constraintStart_toStartOf="@+id/aprosel_tv_slider2"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_tv_slider2" />
+
+            <TextView
+                android:id="@+id/aprosel_tv_slider2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_light"
+                android:text="@string/seekbar_mad1"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/aprosel_tv_slider1"
+                app:layout_constraintStart_toStartOf="@+id/aprosel_tv_slider1"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_sb_slider1" />
+
+            <TextView
+                android:id="@+id/aprosel_tv_slider1"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito_light"
+                android:text="@string/seekbar_tam1"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toEndOf="@+id/aprosel_iv_icono"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+            <SeekBar
+                android:id="@+id/aprosel_sb_slider1"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="104dp"
+                android:layout_height="wrap_content"
+                android:max="2"
+                android:progress="1"
+                app:layout_constraintEnd_toEndOf="@+id/aprosel_tv_slider1"
+                app:layout_constraintStart_toStartOf="@+id/aprosel_tv_slider1"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_tv_slider1" />
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/nunito_light"
+                android:text="@string/precio_gramo"
+                android:textColor="@android:color/black"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="@+id/aprosel_tv_descripcion"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_tv_descripcion" />
+
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/nunito_light"
+                android:text="@string/Precio_unidad"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/textView25"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+            <TextView
+                android:id="@+id/textView43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/nunito"
+                android:text="@string/total_compra"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/textView42"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView42"
+                app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+            <TextView
+                android:id="@+id/textView40"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/nunito_light"
+                android:text=" 99,9"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView25"
+                app:layout_constraintStart_toEndOf="@+id/textView25"
+                app:layout_constraintTop_toTopOf="@+id/textView25" />
+
+            <TextView
+                android:id="@+id/textView44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:fontFamily="@font/nunito_light"
+                android:text="999"
+                android:textColor="@android:color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView42"
+                app:layout_constraintStart_toEndOf="@+id/textView42"
+                app:layout_constraintTop_toTopOf="@+id/textView42"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/aprosel_bt_ingresar"
+                style="@style/normal_boton"
+                android:layout_marginTop="24dp"
+                android:background="@color/color_purple"
+                android:text="@string/boton_anadir"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.474"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_tv_unidad" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.3" />
+
+            <TextView
+                android:id="@+id/aprosel_tv_beneficios"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:background="@null"
+                android:text="@string/app_name"
+                android:textAlignment="center"
+                android:textColor="#BDBDBD"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_est_beneficios" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.45" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.87" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

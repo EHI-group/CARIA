@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.mateocvas.caria.ui.shoop.ShoopFragment"
+        android:label="@string/title_fsettings"
+        tools:layout="@layout/shoop" />
+
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.mateocvas.caria.ui.register.RegisterFragment"
+        android:label="@string/title_fregister"
+        tools:layout="@layout/fragment_historial" />
+
+    <fragment
+        android:id="@+id/navigation_bascket"
+        android:name="com.mateocvas.caria.ui.bascket.BascketFragment"
+        android:label="@string/title_fshoop"
+        tools:layout="@layout/activity_basket" />
+
+    <fragment
+        android:id="@+id/navigation_others"
+        android:name="com.mateocvas.caria.ui.others.OthersFragment"
+        android:label="@string/title_fbasquekt"
+        tools:layout="@layout/fragment_others" />
+</navigation>

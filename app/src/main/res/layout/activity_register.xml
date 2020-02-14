@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="8dp"
+    android:background="@drawable/dialog_rounded"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/aregister_est_register"
+        style="@style/normal_tile_greendark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/titulo_registro"
+        app:layout_constraintBottom_toTopOf="@+id/aregister_et_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/aregister_et_name"
+        style="@style/normal_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint_nombre"
+        android:inputType="textPersonName"
+
+        app:layout_constraintBottom_toTopOf="@+id/aregister_et_number1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/aregister_et_number2"
+        style="@style/normal_edittext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/hint_otro_numero"
+        app:layout_constraintBottom_toTopOf="@+id/aregister_est_location"
+        app:layout_constraintEnd_toEndOf="@+id/aregister_et_number1"
+        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintStart_toStartOf="@+id/aregister_et_number1" />
+
+    <Spinner
+        android:id="@+id/aregister_sp_spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/aregister_et_aldress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/aregister_bt_done"
+        style="@style/normal_boton"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/bt_finalzar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/aregister_est_location"
+        style="@style/normal_title_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/sub_title_location"
+        app:layout_constraintBottom_toTopOf="@+id/aregister_sp_spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/aregister_et_aldress"
+        style="@style/normal_edittext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:ems="10"
+        android:hint="@string/hint_direccion"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/aregister_bt_done"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/aregister_et_number1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint_numero"
+        android:inputType="phone"
+        app:layout_constraintBottom_toTopOf="@+id/aregister_et_number2"
+        app:layout_constraintEnd_toEndOf="@+id/aregister_et_name"
+        app:layout_constraintStart_toStartOf="@+id/aregister_et_name" />
+
+    <ImageView
+        android:id="@+id/aregister_est_icono"
+        android:layout_width="144dp"
+        android:layout_height="144dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="144dp"
+        android:layout_marginBottom="144dp"
+        app:layout_constraintBottom_toTopOf="@+id/aregister_est_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/redondo" />
+</androidx.constraintlayout.widget.ConstraintLayout>

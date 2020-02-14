@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="2dp"
+    android:paddingStart="8dp"
+    android:paddingRight="8dp"
+    android:paddingLeft="4dp"
+    android:paddingEnd="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<androidx.cardview.widget.CardView
+    android:id="@+id/imarket_cv_card"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    app:cardBackgroundColor="@color/colorPrimaryDark"
+    app:cardCornerRadius="10dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" >
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:padding="4dp"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/imarket_iv_icono"
+            style="@style/normal_image_list"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="@string/imagen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/imarket_tv_total"
+            style="@style/normal_small_withe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imarket_iv_icono"
+            android:layout_alignStart="@+id/imarket_tv_cantidad"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            android:text="800 000 COP"
+            android:textAlignment="viewEnd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imarket_tvest_cantidad" />
+
+
+        <TextView
+            android:id="@+id/imarket_tvest_total"
+            style="@style/normal_small_withe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imarket_iv_icono"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="4dp"
+            android:text="@string/e_item_lista_carrito_unidad"
+            app:layout_constraintEnd_toStartOf="@+id/imarket_tv_total"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toTopOf="@+id/imarket_tv_total" />
+
+        <TextView
+            android:id="@+id/imarket_tvest_cantidad"
+            style="@style/normal_small_withe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imarket_iv_icono"
+            android:layout_toStartOf="@+id/imarket_tv_cantidad"
+            android:text="@string/cantidad"
+            app:layout_constraintStart_toStartOf="@+id/imarket_tvest_total"
+            app:layout_constraintTop_toBottomOf="@+id/imarket_tv_nombre" />
+
+        <TextView
+            android:id="@+id/imarket_tv_nombre"
+            style="@style/normal_normal_withe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/imarket_iv_icono"
+            app:layout_constraintBottom_toBottomOf="@+id/imarket_iv_icono"
+            app:layout_constraintStart_toEndOf="@+id/imarket_iv_icono"
+            app:layout_constraintTop_toTopOf="@+id/imarket_iv_icono" />
+
+        <TextView
+            android:id="@+id/imarket_tv_cantidad"
+            style="@style/normal_small_withe"
+            android:layout_width="27dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imarket_iv_icono"
+            android:layout_alignParentEnd="true"
+            android:text="444"
+            app:layout_constraintBottom_toBottomOf="@+id/imarket_tvest_cantidad"
+            app:layout_constraintEnd_toEndOf="@+id/imarket_tv_total"
+            app:layout_constraintStart_toEndOf="@+id/imarket_tvest_cantidad"
+            app:layout_constraintTop_toTopOf="@+id/imarket_tvest_cantidad" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
+</LinearLayout>

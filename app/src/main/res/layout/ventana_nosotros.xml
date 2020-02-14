@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/dialog_rounded"
+
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/textView17"
+        style="@style/normal_tile_greendark"
+         android:layout_width="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/ventana_nosotros_est_quienes"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        style="@style/normal_tile_greendark"
+        android:layout_width="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="4dp"
+        android:text="@string/ventana_nosotros_est_mision"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+    <TextView
+        android:id="@+id/textView19"
+        style="@style/normal_tile_greendark"
+        android:layout_width="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/ventana_nosotros_est_vision"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/textView20"
+        style="@style/normal_normal_medium"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/ventana_nosotros_res_mision"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/ventana_nosotros_res_lema"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:textColor="@color/texo_general"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <TextView
+        android:id="@+id/textView22"
+        style="@style/normal_tile_greendark"
+        android:layout_width="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/ventana_nosotros_est_lema"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toBottomOf="@+id/textView24" />
+
+    <TextView
+        android:id="@+id/textView23"
+        style="@style/normal_normal_medium"
+        android:layout_width="0dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/ventana_nosotros_res_quienes"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/textView24"
+        style="@style/normal_normal_medium"
+        android:layout_width="0dp"
+        android:text="@string/ventana_nosotros_res_vision"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline38"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+</android.support.constraint.ConstraintLayout>
+</ScrollView>
+</RelativeLayout>

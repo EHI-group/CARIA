@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_rounded"
+        tools:layout_editor_absoluteX="1dp">
+
+        <TextView
+            android:id="@+id/textView9004rs"
+            style="@style/normal_normal_medium_bold"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/ventana_contacto_est_instagram"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@+id/textView53"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+        <TextView
+            android:id="@+id/textView74ds33dd"
+            style="@style/normal_normal_medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_contacto_res_facebook"
+            android:textAlignment="viewStart"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView9004rs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView9004rs" />
+
+        <TextView
+            android:id="@+id/textView41"
+            style="@style/normal_tile_greendark"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_contacto_res_contact"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+        <TextView
+            android:id="@+id/textView45"
+            style="@style/normal_normal_medium"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_contacto_res_fijo"
+            android:textAlignment="viewStart"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView46"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView46" />
+
+        <TextView
+            android:id="@+id/textView46"
+            style="@style/normal_normal_medium_bold"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/ventana_contacto_est_fijo"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@+id/textView45"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+        <TextView
+            android:id="@+id/textView47"
+            style="@style/normal_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_contacto_res_cel_2"
+            android:textAlignment="viewStart"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView48"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView48" />
+
+        <TextView
+            android:id="@+id/textView48"
+            style="@style/normal_normal_medium_bold"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/ventana_contacto_est_celowat"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@+id/textView47"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+        <TextView
+            android:id="@+id/textView49"
+            style="@style/normal_normal_medium_bold"
+            android:layout_width="0dp"
+            android:layout_marginStart="18dp"
+            android:text="@string/ventana_contacto_est_celowat"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@+id/textView55"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView48" />
+
+        <TextView
+            android:id="@+id/textView50"
+            style="@style/normal_normal_medium_bold"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_nosotros_est_correo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView55" />
+
+        <TextView
+            android:id="@+id/textView51"
+            style="@style/normal_tile_greendark"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_nosotros_est_redes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView54" />
+
+        <TextView
+            android:id="@+id/textView52"
+            style="@style/normal_normal_medium_bold"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:text="@string/ventana_nosotros_est_facebook"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@+id/textView53"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView51" />
+
+        <TextView
+            android:id="@+id/textView53"
+            style="@style/normal_normal_medium"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_contacto_res_facebook"
+            android:textAlignment="viewStart"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView52"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView52" />
+
+        <TextView
+            android:id="@+id/textView54"
+            style="@style/normal_normal_medium"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_contacto_res_correo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView50" />
+
+        <TextView
+            android:id="@+id/textView55"
+            style="@style/normal_normal_medium"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_contacto_res_fijo"
+            android:textAlignment="viewStart"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView49"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView49" />
+
+        <TextView
+            android:id="@+id/textView56"
+            style="@style/normal_tile_greendark"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_contacto_est_lugares"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+        <TextView
+            android:id="@+id/textView57"
+            style="@style/normal_normal_medium"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/ventana_cotacto_res_lugares"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView56" />
+
+        <TextView
+            android:id="@+id/textView39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            style="@style/normal_tile_greendark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forma de pago"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            style="@style/normal_normal_medium_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ahorros bancolombia:"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView8"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView7"
+            style="@style/normal_normal_medium_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="efectivo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="TextView"
+            app:layout_constraintBottom_toBottomOf="@+id/textView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

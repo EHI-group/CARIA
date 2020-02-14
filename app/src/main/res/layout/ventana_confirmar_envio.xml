@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/dialog_rounded">
+
+        <TextView
+            android:id="@+id/textView68"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="24dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView67" />
+
+        <TextView
+            android:id="@+id/vconfirmar_est_total"
+            style="@style/normal_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/ventana_confirmar_envio_total"
+            app:layout_constraintStart_toStartOf="@+id/vconfirmar_est_envio"
+            app:layout_constraintTop_toBottomOf="@+id/vconfirmar_est_envio" />
+
+        <TextView
+            android:id="@+id/vconfirmar_tv_evio"
+            style="@style/normal_normal_cleargreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="hola"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/vconfirmar_est_envio"
+            app:layout_constraintStart_toEndOf="@+id/vconfirmar_est_envio"
+            app:layout_constraintTop_toTopOf="@+id/vconfirmar_est_envio"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+        <TextView
+            android:id="@+id/vconfirmar_est_envio"
+            style="@style/normal_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/ventana_confirmar_envio_costo_envio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vconfirmar_est_totalcompra" />
+
+        <TextView
+            android:id="@+id/vconfirmar_tv_totalcompra"
+            style="@style/normal_normal_cleargreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="hola"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/vconfirmar_est_totalcompra"
+            app:layout_constraintStart_toStartOf="@+id/vconfirmar_tv_evio" />
+
+        <TextView
+            android:id="@+id/vconfirmar_est_titulo"
+            style="@style/normal_tile_greendark"
+            android:layout_width="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/confirmacion_pedido"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/vconfirmar_est_totalcompra"
+            style="@style/normal_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/ventana_confirmar_envio_total_compra"
+            app:layout_constraintStart_toStartOf="@+id/vconfirmar_est_envio"
+            app:layout_constraintTop_toBottomOf="@+id/vconfirmar_est_titulo" />
+
+        <Button
+            android:id="@+id/vconfirmar_bt_atras"
+            style="@style/normal_boton"
+            android:layout_height="41dp"
+            android:layout_marginStart="16dp"
+            android:text="@string/boton_atras"
+            app:layout_constraintBottom_toBottomOf="@+id/vconfirmar_bt_confirmar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/vconfirmar_bt_confirmar" />
+
+        <Button
+            android:id="@+id/vconfirmar_bt_confirmar"
+            style="@style/normal_boton"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/boton_aceptar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vconfirmar_est_informacion" />
+
+        <TextView
+            android:id="@+id/vconfirmar_tv_total"
+            style="@style/normal_normal_cleargreen"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:text="hola"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/vconfirmar_est_total"
+            app:layout_constraintStart_toStartOf="@+id/vconfirmar_tv_evio"
+            app:layout_constraintTop_toTopOf="@+id/vconfirmar_est_total" />
+
+        <TextView
+            android:id="@+id/vconfirmar_est_direccion"
+            style="@style/normal_tile_greendark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/ventana_confirmar_envio_direccion"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toBottomOf="@+id/textView68"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView67" />
+
+        <EditText
+            android:id="@+id/vconfirmar_et_direccion"
+            style="@style/normal_normal_cleargreen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/vconfirmar_est_direccion"
+            app:layout_constraintEnd_toEndOf="@+id/textView67"
+            app:layout_constraintStart_toEndOf="@+id/vconfirmar_est_direccion"
+            app:layout_constraintTop_toTopOf="@+id/vconfirmar_est_direccion" />
+
+        <TextView
+            android:id="@+id/textView67"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/vconfirmar_est_total" />
+
+        <TextView
+            android:id="@+id/vconfirmar_est_informacion"
+            style="@style/normal_normal_medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/ventana_confirmar_envio_pago"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView68" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
