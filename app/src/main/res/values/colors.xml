@@ -17,8 +17,9 @@
     <color name="medicinal">#841B2D	</color>
     <color name="selected_medicinal">#757575</color>
     <color name="color_gray">#F0F0F0</color>
-    <color name="color_purple">#24E55A</color>
+    <color name="color_purple">#6E5B7B</color>
     <color name="color_withe">#FFFFFF</color>
 
+    <color name="grey_c4">#C4C4C4</color>
 
 </resources>

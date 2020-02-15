@@ -9,104 +9,167 @@
         android:id="@+id/fothers_et_line5"
         style="@style/normal_line"
         android:layout_width="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
+        android:background="@color/grey_c4"
+        android:textColor="@color/grey_c4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/fothers_et_line3"
-        style="@style/normal_line"
-        android:layout_width="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/fothers_et_line4"
-        style="@style/normal_line"
-        android:layout_width="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_bt_aclaraciones"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_aclaraciones" />
 
     <TextView
         android:id="@+id/fothers_et_line2"
         style="@style/normal_line"
         android:layout_width="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="84dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_c4"
+        android:textColor="@color/grey_c4"
+        android:textSize="1sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_lenguaje" />
+
+    <TextView
+        android:id="@+id/fothers_et_line3"
+        style="@style/normal_line"
+        android:layout_width="0dp"
+        android:background="@color/grey_c4"
+        android:textColor="@color/colorClear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_actualizar" />
+
+    <TextView
+        android:id="@+id/fothers_et_line4"
+        style="@style/normal_line"
+        android:layout_width="0dp"
+        android:background="@color/grey_c4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_contactos" />
 
     <TextView
         android:id="@+id/fothers_et_line"
         style="@style/normal_line"
         android:layout_width="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_bt_politicas"
+        android:background="@color/grey_c4"
+        android:textColor="@color/grey_c4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_agradecimientos" />
 
     <Button
         android:id="@+id/fothers_bt_aclaraciones"
         style="@style/normal_menu_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Aclaraciones"
+        android:fontFamily="@font/nunito"
+        android:paddingLeft="24dp"
+        android:text="@string/notificaciones"
         android:textAlignment="viewStart"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_et_line5"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView12" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_et_line4" />
+
+    <Button
+        android:id="@+id/fothers_bt_lenguaje"
+        style="@style/normal_menu_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:paddingLeft="24dp"
+        android:text="@string/lenguaje"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_et_line5" />
+
+    <Button
+        android:id="@+id/fothers_bt_help"
+        style="@style/normal_menu_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/notificaciones"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
         android:id="@+id/textView12"
         style="@style/normal_subtitle_dark"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Consiciones de uso"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_bt_contactos"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/Configuracion"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <Button
         android:id="@+id/fothers_bt_contactos"
         style="@style/normal_menu_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Informacion de pago y contacto"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito"
+        android:paddingLeft="24dp"
+        android:text="@string/Informacion_de_pago"
         android:textAlignment="viewStart"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_et_line4"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView12" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <Button
         android:id="@+id/fothers_bt_actualizar"
         style="@style/normal_menu_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Actualizar"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nunito"
+        android:paddingLeft="24dp"
+        android:text="@string/mi_perfil"
         android:textAlignment="viewStart"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_et_line3"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+    <Button
+        android:id="@+id/fothers_bt_actualizar3"
+        style="@style/normal_menu_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:paddingLeft="24dp"
+        android:text="@string/hint_direccion"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_et_line3" />
 
     <Button
         android:id="@+id/fothers_bt_nosotros"
@@ -114,13 +177,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Sobre nosotros"
+        android:fontFamily="@font/nunito"
+        android:text="@string/about_us"
         android:textAlignment="viewStart"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_et_line1"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_help" />
 
     <Button
         android:id="@+id/fothers_bt_agradecimientos"
@@ -128,13 +193,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/nunito"
         android:text="@string/menu_item_agradecimientos"
         android:textAlignment="viewStart"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_et_line"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_nosotros" />
 
     <Button
         android:id="@+id/fothers_bt_politicas"
@@ -142,55 +209,117 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/nunito"
         android:text="Politicas de privacidad"
         android:textAlignment="viewStart"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_et_line2"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_agradecimientos" />
+
+    <Button
+        android:id="@+id/fothers_bt_CerrarS"
+        style="@style/normal_menu_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/nunito"
+        android:text="@string/cerrar_sesion"
+        android:textAlignment="viewStart"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_politicas" />
 
     <TextView
         android:id="@+id/textView9"
+        style="@style/normal_tile_dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/title_fsettings"
-        style="@style/normal_tile_dark"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="hola Juan"
 
+        android:textColor="#ffa259"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView10"
         style="@style/normal_subtitle_dark"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Informacion_personal"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_bt_actualizar"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="48dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/informacion_personal"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
         android:id="@+id/textView13"
         style="@style/normal_subtitle_dark"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
 
-        android:text="Algo mas"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_bt_nosotros"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:text="@string/algo_mas"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_et_line2" />
 
     <TextView
         android:id="@+id/fothers_et_line1"
         style="@style/normal_line"
         android:layout_width="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/fothers_bt_agradecimientos"
+        android:background="@color/grey_c4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_nosotros" />
+
+    <TextView
+        android:id="@+id/textView11"
+        style="@style/normal_line"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_c4"
+        android:textSize="1sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_actualizar3" />
+
+    <TextView
+        android:id="@+id/textView58"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:background="@color/grey_c4"
+        android:textSize="1sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_help" />
+
+    <TextView
+        android:id="@+id/textView60"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_c4"
+        android:textSize="1sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fothers_bt_CerrarS" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

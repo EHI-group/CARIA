@@ -274,5 +274,15 @@
     <string name="precio_gramo">Precio x gramo $</string>
     <string name="Precio_unidad">Precio unidad: $</string>
     <string name="total_compra">Total compra: </string>
+    <string name="informacion_personal">informacion personal</string>
+    <string name="Configuracion">configuración</string>
+    <string name="algo_mas">algo mas</string>
+    <string name="mi_perfil">Mi Perfil</string>
+    <string name="Direcciones">Direcciones</string>
+    <string name="Informacion_de_pago">Información de pago</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="lenguaje">Lenguaje</string>
+    <string name="about_us">Sobre nosotros</string>
+    <string name="cerrar_sesion">Cerrar Sesión</string>
 
 </resources>
