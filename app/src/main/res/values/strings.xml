@@ -281,5 +281,8 @@
     <string name="cerrar_sesion">Cerrar Sesión</string>
     <string name="From">From</string>
     <string name="EHIgroup">EHIgroup</string>
+    <string name="Terminos_Condiciones">Al ingresar aceptas nuestro Términos y condiciones y nuestra Política de privacidad</string>
+    <string name="numero_de_celular">Tu número de celular...</string>
+    <string name="direccion">Tu dirección...</string>
 
 </resources>
