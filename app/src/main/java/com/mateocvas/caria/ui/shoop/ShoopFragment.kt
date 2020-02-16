@@ -29,9 +29,10 @@ import kotlin.concurrent.schedule
 
 class ShoopFragment : Fragment(),TabHost.OnTabChangeListener{
 
+    
 
      lateinit var root:View
-    
+
      lateinit var model:ShoopViewModel
      lateinit var comunication:Comunication
 
