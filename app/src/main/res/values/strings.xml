@@ -22,7 +22,7 @@
 
     <string name="titulo_actualice">Actualice</string>
 
-    <string name="app_name">Caria</string>
+    <string name="app_name">caria</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -42,8 +42,6 @@
     <string name="hint_otro_numero">(opcional) Otro numero.</string>
     <string name="hint_direccion">Tu direccion</string>
     <string name="hint_nombre">Tu nombre y apellidos...</string>
-
-
 
 
     <string name="bt_finalzar">Finalizar</string>
@@ -254,9 +252,6 @@
     <string name="titulo_canasta">canasta</string>
 
 
-
-
-
     <string name="title_fruver">Frutas</string>
     <string name="title_food">Verduras</string>
     <string name="title_medicinal">Otros</string>
@@ -284,5 +279,7 @@
     <string name="lenguaje">Lenguaje</string>
     <string name="about_us">Sobre nosotros</string>
     <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="From">From</string>
+    <string name="EHIgroup">EHIgroup</string>
 
 </resources>
