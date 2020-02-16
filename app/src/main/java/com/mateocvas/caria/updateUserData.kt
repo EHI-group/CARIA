@@ -16,21 +16,18 @@ class updateUserData: AppCompatActivity(),View.OnClickListener{
     override fun onClick(p0: View?) {
         val temp = arrayOf(
             this.aregister_et_name.text.toString(),
-            this.aregister_et_number1.text.toString(),
-            this.aregister_et_number2.text.toString(),
+            this.aregister_et_numero.text.toString(),
             this.aregister_et_aldress.text.toString()
         )
 
         if (temp[0].equals(""))
             this.aregister_et_name.setError(this.getString(R.string.error_not_fill))
         else if (temp[1].equals(""))
-            this.aregister_et_number1.setError(this.getString(R.string.error_not_fill))
-        else if (temp[3].equals(""))
+            this.aregister_et_numero.setError(this.getString(R.string.error_not_fill))
+        else if (temp[2].equals(""))
             this.aregister_et_aldress.setError(this.getString(R.string.error_not_fill))
-        else if (temp[2].length != 10 && temp[2].length != 7 && temp[2].length != 0)
-            this.aregister_et_number2.setError(this.getString(R.string.error_digit));
         else if (temp[1].length != 10 && temp[1].length != 7)
-            this.aregister_et_number1.setError(this.getString(R.string.error_digit));
+            this.aregister_et_numero.setError(this.getString(R.string.error_digit));
         else {
 
                     val editor = this.getSharedPreferences("user", Context.MODE_PRIVATE).edit()
