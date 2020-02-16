@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.activity_product_selected.*
 import java.lang.Exception
 import kotlin.collections.ArrayList
 
-class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, TabHost.OnTabChangeListener, SeekBar.OnSeekBarChangeListener {
+class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.OnSeekBarChangeListener {
     override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
 
 
@@ -65,7 +65,7 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, TabHost.On
     lateinit var toast:Toast
     val warnings=Warinings()
     lateinit var dialog:Dialog
-    private var selected_tab=MyApp.instance.applicationContext.getString(R.string.tag_tab1)
+    var selected_tab=MyApp.instance.applicationContext.getString(R.string.tag_tab1)
     lateinit var selected_item:ItemProduct
     lateinit var comunication: Comunication
     var total:Long=0
@@ -377,9 +377,6 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, TabHost.On
     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
     }
 
-    override fun onTabChanged(p0: String?) {
-        selected_tab=p0.toString()
-    }
 
     override fun onClick(p0: View?) {
         when (p0!!.id) {

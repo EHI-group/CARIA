@@ -21,16 +21,59 @@ import com.mateocvas.caria.R
 import com.mateocvas.caria.ui.Comunication
 
 import kotlinx.android.synthetic.main.fragment_shop.view.*
+import org.w3c.dom.Text
 import java.lang.Exception
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.concurrent.schedule
 
-class ShoopFragment : Fragment(){
+class ShoopFragment : Fragment(),TabHost.OnTabChangeListener{
 
+    
 
-    lateinit var root:View
+     lateinit var root:View
+
      lateinit var model:ShoopViewModel
      lateinit var comunication:Comunication
+
+     private val tabs=ArrayList<TextView>()
+     private val tabs_back=ArrayList<View>()
+
+
+
+
+
+    override fun onTabChanged(p0: String?) {
+
+        model.selected_tab=p0!!
+        var t0=0
+        var t1=1
+        var t2=2
+
+        if(p0.equals(root.context.getString(R.string.tag_tab2))){
+             t0=1
+             t1=0
+             t2=2
+
+        }
+         else if(p0.equals(root.context.getString(R.string.tag_tab3)))   {
+            t0=2
+            t1=0
+            t2=1
+
+        }
+
+
+        tabs[t0].setTextColor(root.context.getColor(R.color.color_withe))
+        tabs_back[t0].setBackground(root.context.getDrawable(R.drawable.tab_rounded))
+        tabs[t1].setTextColor(root.context.getColor(R.color.color_purple))
+        tabs_back[t1].setBackgroundColor(root.context.getColor(R.color.color_withe))
+        tabs[t2].setTextColor(root.context.getColor(R.color.color_purple))
+        tabs_back[t2].setBackgroundColor(root.context.getColor(R.color.color_withe))
+
+    }
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,15 +125,19 @@ fun setTab(view: View){
     tab3.setContent(R.id.fshoop_tb_tab3)
     tabHost.addTab(tab3)
 
+
     for (i in 0 until tabHost.getTabWidget().getChildCount()) {
         val tv = tabHost.getTabWidget().getChildAt(i).findViewById<TextView>(android.R.id.title)
+       tabs_back.add(tabHost.getTabWidget().getChildAt(i))
         tv.setAllCaps(false)
-        tv.setTextColor(Color.parseColor("#008FA5"))
-        if (resources.configuration.screenLayout and Configuration.SCREENLAYOUT_SIZE_MASK == Configuration.SCREENLAYOUT_SIZE_LARGE)
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f)
-        else
-            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17f)
+        tabs.add(tv)
     }
+    tabs[0].setTextColor(root.context.getColor(R.color.color_withe))
+    tabs_back[0].setBackground(root.context.getDrawable(R.drawable.tab_rounded))
+    tabs[1].setTextColor(root.context.getColor(R.color.color_purple))
+    tabs_back[1].setBackgroundColor(root.context.getColor(R.color.color_withe))
+    tabs[2].setTextColor(root.context.getColor(R.color.color_purple))
+    tabs_back[2].setBackgroundColor(root.context.getColor(R.color.color_withe))
 
 
 }
@@ -124,9 +171,11 @@ fun setTab(view: View){
     }
 
     fun setListeners(){
-        root.tabhost.setOnTabChangedListener(model)
+        root.tabhost.setOnTabChangedListener(this)
         root.fshoop_et_search.addTextChangedListener(model)
     }
+
+
 
     fun setObservers(){
 
