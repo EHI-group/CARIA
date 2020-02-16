@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.96" />
+                app:layout_constraintGuide_percent="0.95" />
 
 
             <ImageButton
@@ -141,14 +141,17 @@
                 android:id="@+id/aprosel_est_beneficios"
                 style="@style/normal_normal_cleargreen"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="8dp"
+                android:background="@color/color_gray"
                 android:fontFamily="@font/nunito_light"
-                android:text="@string/activity_fruta_seleccionada_est_beneficios"
+                android:hint="@string/ventana_fruta_modificar_edittext"
                 android:textAlignment="viewStart"
                 android:textColor="@android:color/black"
+                android:textColorHint="@color/color_black"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline11"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline9"
@@ -273,12 +276,12 @@
             <Button
                 android:id="@+id/aprosel_bt_ingresar"
                 style="@style/normal_boton"
+                android:layout_height="40dp"
                 android:layout_marginTop="24dp"
-                android:background="@color/color_purple"
-                android:text="@string/boton_anadir"
+                android:background="@drawable/redondo2"
+                android:text="@string/boton_actualizar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.474"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline9"
                 app:layout_constraintTop_toBottomOf="@+id/aprosel_tv_unidad" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -295,14 +298,14 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.45" />
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline34"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.87" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
