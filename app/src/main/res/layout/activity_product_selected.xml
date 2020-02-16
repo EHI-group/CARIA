@@ -288,20 +288,6 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.3" />
 
-            <TextView
-                android:id="@+id/aprosel_tv_beneficios"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="13dp"
-                android:background="@null"
-                android:text="@string/app_name"
-                android:textAlignment="center"
-                android:textColor="#BDBDBD"
-                android:textSize="34sp"
-                app:layout_constraintEnd_toStartOf="@+id/guideline11"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/aprosel_est_beneficios" />
-
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline3"
                 android:layout_width="wrap_content"
