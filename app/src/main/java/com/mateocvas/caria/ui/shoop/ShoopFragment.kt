@@ -4,6 +4,7 @@ package com.mateocvas.caria.ui.shoop
 import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TabHost
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -212,42 +214,29 @@ fun setTab(view: View){
             super.onScrolled(recyclerView, dx, dy)
 
             
-            if(dy>8){
+            if(dy>3){
                 arriba+=dy
-                    if(arriba>=10){
+                    if(arriba>=15){
                         arriba=0
-                        if(!(root.textView.height-4<=0)) {
-                             pararam2.height=root.textView.height-6
-                             root.textView.setLayoutParams(pararam2)
-                        }
-
-                        if(!(root.fshoop_et_search.height-4<=0)) {
-                            pararam1.height= root.fshoop_et_search.height-6
-                            root.fshoop_et_search.setLayoutParams(pararam1)
-                        }
+                        if((root.textView.height-5>0))
+                             pararam2.height=root.textView.height-2
+                        else
+                            pararam2.height=1
+                            root.textView.setLayoutParams(pararam2)
                         }
             }
-            else if(dy<-8){
+            else if(dy<-3){
                 abajo+=-1*(dy)
                 if(abajo>=10){
                     abajo=0
-                    if(root.textView.height+7>=tam2){
+                    if(root.textView.height+9>tam2){
                         pararam2.height=tam2
                         root.textView.setLayoutParams(pararam2)
                     }
                     else {
-                        pararam2.height=root.textView.height + 11
+                        pararam2.height=root.textView.height + 8
                         root.textView.setLayoutParams(pararam2)
                     }
-                    if(root.fshoop_et_search.height+7>=tam1){
-                        pararam1.height=tam1
-                        root.fshoop_et_search.setLayoutParams(pararam1)
-                    }
-                    else {
-                        pararam1.height=root.textView.height + 11
-                        root.fshoop_et_search.setLayoutParams(pararam1)
-                    }
-
                 }
 
 
