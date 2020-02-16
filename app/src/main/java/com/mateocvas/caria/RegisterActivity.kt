@@ -16,28 +16,24 @@ class RegisterActivity :AppCompatActivity(),View.OnClickListener {
     override fun onClick(p0: View?) {
         val temp = arrayOf(
             this.aregister_et_name.text.toString(),
-            this.aregister_et_number1.text.toString(),
-            this.aregister_et_number2.text.toString(),
+            this.aregister_et_numero.text.toString(),
             this.aregister_et_aldress.text.toString()
         )
 
         if (temp[0].equals(""))
             this.aregister_et_name.setError(this.getString(R.string.error_not_fill))
         else if (temp[1].equals(""))
-            this.aregister_et_number1.setError(this.getString(R.string.error_not_fill))
+            this.aregister_et_numero.setError(this.getString(R.string.error_not_fill))
         else if (temp[3].equals(""))
             this.aregister_et_aldress.setError(this.getString(R.string.error_not_fill))
-        else if (temp[2].length != 10 && temp[2].length != 7 && temp[2].length != 0)
-            this.aregister_et_number2.setError(this.getString(R.string.error_digit));
         else if (temp[1].length != 10 && temp[1].length != 7)
-            this.aregister_et_number1.setError(this.getString(R.string.error_digit));
+            this.aregister_et_numero.setError(this.getString(R.string.error_digit));
         else {
             FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val editor = this.getSharedPreferences("user", Context.MODE_PRIVATE).edit()
                     editor.putString("name", temp[0])
                     editor.putString("number1", temp[1])
-                    editor.putString("number2", temp[2])
                     editor.putString("city", this.aregister_sp_spinner.selectedItem as String)
                     editor.putString("aldres", temp[3])
                     editor.putBoolean("first", true)
@@ -79,8 +75,8 @@ class RegisterActivity :AppCompatActivity(),View.OnClickListener {
 
         val pref = this.getSharedPreferences("user", Context.MODE_PRIVATE)
         this.aregister_et_name.setText(pref.getString("name", ""))
-        this.aregister_et_number1.setText(pref.getString("number1",""))
-        this.aregister_et_number2.setText(pref.getString("number2",""))
+        this.aregister_et_numero.setText(pref.getString("number1",""))
+        //this.aregister_et_number2.setText(pref.getString("number2",""))
         this.aregister_et_aldress.setText(pref.getString("aldres",""))
 
         val city=pref.getString("city","")
