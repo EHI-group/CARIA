@@ -26,7 +26,7 @@ import com.mateocvas.caria.ui.Comunication
 import kotlinx.android.synthetic.main.activity_basket.view.*
 import kotlinx.android.synthetic.main.activity_product_selected.*
 import kotlinx.android.synthetic.main.ventana_confirmar_envio.*
-import kotlinx.android.synthetic.main.ventana_producto_modificar_fruver.*
+import kotlinx.android.synthetic.main.ventana_carrito.*
 import java.lang.Exception
 import kotlin.collections.ArrayList
 
@@ -61,18 +61,18 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
 
 
         if(selected_item.path.equals(this.getString(R.string.tag_fruver)))
-            if(p0!!.id==R.id.vmodfru_sb_seekbar1)
+            if(p0!!.id==R.id.cart_sb_slider1)
                 if(selected_item.ventanan.toInt()==2 ||selected_item.ventanan.toInt()==4){
                     selected_item.tamano=p1
-                    dialog.vmodfru_tv_seekbar1.setText((array_size[p1]))
+                    dialog.cart_tv_slider1.setText((array_size[p1]))
                 }
                 else{
                     selected_item.madure=p1
-                    dialog.vmodfru_tv_seekbar1.setText((array_maduration[p1]))
+                    dialog.cart_tv_slider1.setText((array_maduration[p1]))
                 }
 
             else {
-                dialog.vmodfru_tv_seekbar2.setText((array_maduration[p1]))
+                dialog.cart_tv_slider2.setText((array_maduration[p1]))
                 selected_item.madure = p1
             }
 
@@ -172,23 +172,23 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
         Toast.makeText(root.context,this.getString(R.string.toast_carrito_vaciado),Toast.LENGTH_LONG).show()
     }
     fun clickMinusDialog() {
-        var aux1 = dialog.vmodfru_tv_cantidad.text.toString().toInt()
+        var aux1 = dialog.cart_tv_unidad.text.toString().toInt()
         aux1--
         if (aux1 == 0)
             Toast.makeText(context, context!!.getString(R.string.toast_cantidad_positiva), Toast.LENGTH_LONG).show()
         else {
-            dialog.vmodfru_tv_cantidad.setText(aux1.toString())
-            dialog.vmodfru_tv_totalunidad.setText(funciones.formato((aux1 * funciones.desformato(selected_item.precio))))
-            dialog.vmodfru_tv_totalcompra.setText(funciones.formato((total + (aux1-cant_ini)*funciones.desformato(selected_item.precio))))
+            dialog.cart_tv_unidad.setText(aux1.toString())
+            //dialog.vmodfru_tv_total.setText(funciones.formato((aux1 * funciones.desformato(selected_item.precio))))
+            dialog.cart_tv_total.setText(funciones.formato((total + (aux1-cant_ini)*funciones.desformato(selected_item.precio))))
         }
     }
 
     fun clickPlusDialog(){
-        var aux2=dialog.vmodfru_tv_cantidad.text.toString().toInt()
+        var aux2=dialog.cart_tv_unidad.text.toString().toInt()
         aux2++
-        dialog.vmodfru_tv_cantidad.setText(aux2.toString())
-        dialog.vmodfru_tv_totalunidad.setText(funciones.formato((aux2*funciones.desformato(selected_item.precio))))
-        dialog.vmodfru_tv_totalcompra.setText(funciones.formato((total+(aux2-cant_ini)*funciones.desformato(selected_item.precio))))
+        dialog.cart_tv_unidad.setText(aux2.toString())
+        dialog.cart_tv_total.setText(funciones.formato((aux2*funciones.desformato(selected_item.precio))))
+        dialog.cart_tv_total.setText(funciones.formato((total+(aux2-cant_ini)*funciones.desformato(selected_item.precio))))
 
     }
 
@@ -218,7 +218,7 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
     }
 
     fun clickAccept(){
-        selected_item.cantidad=dialog.vmodfru_tv_cantidad.text.toString().toInt()
+        selected_item.cantidad=dialog.cart_tv_unidad.text.toString().toInt()
         comunication.updatedBascket(selected_item)
         dialog.dismiss()
         Toast.makeText(root.context,this.getString(R.string.toast_correccion_exitosa),Toast.LENGTH_LONG).show()
@@ -227,55 +227,55 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
 
     fun showWindow(item:ItemProduct){
         selected_item=item
-        dialog.setContentView(R.layout.ventana_producto_modificar_fruver)
+        dialog.setContentView(R.layout.ventana_carrito)
         dialog.getWindow()!!.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT))
-        dialog.vmodfru_sb_seekbar1.setOnSeekBarChangeListener(this)
-        dialog.vmodfru_sb_seekbar2.setOnSeekBarChangeListener(this)
+        dialog.cart_sb_slider1.setOnSeekBarChangeListener(this)
+        dialog.cart_sb_slider2.setOnSeekBarChangeListener(this)
         dialog.show()
         cant_ini=item.cantidad
         GlideApp.with(dialog.context)
             .load(cloud_storage.reference.child(item.path +"/"+item.nombre+".png"))
-            .into( dialog.vmodfru_iv_icono )
+            .into( dialog.cart_iv_icono)
         total=comunication.total
-        dialog.vmodfru_tv_nombre.setText(item.nombre)
-        dialog.vmodfru_et_comentario.setText(item.mensaje)
-        dialog.vmodfru_tv_cantidad.setText(item.cantidad.toString())
-        dialog.vmodfru_tv_totalunidad.setText(funciones.formato(item.cantidad*funciones.desformato(item.precio)))
-        dialog.vmodfru_tv_totalcompra.setText(funciones.formato(total))
+        dialog.cart_tv_name.setText(item.nombre)
+        dialog.cart_est_beneficios.setText(item.mensaje)
+        dialog.cart_tv_unidad.setText(item.cantidad.toString())
+        //dialog.vmodfru_tv_totalunidad.setText(funciones.formato(item.cantidad*funciones.desformato(item.precio)))
+        dialog.cart_tv_total.setText(funciones.formato(total))
 
 
         if(item.ventanan.toInt()==1){
-            dialog.vmodfru_tv_seekbar1.visibility=View.GONE
-            dialog.vmodfru_sb_seekbar1.visibility=View.GONE
-            dialog.vmodfru_sb_seekbar2.visibility=View.GONE
-            dialog.vmodfru_tv_seekbar2.visibility=View.GONE
+            dialog.cart_tv_slider1.visibility=View.GONE
+            dialog.cart_sb_slider1.visibility=View.GONE
+            dialog.cart_sb_slider2.visibility=View.GONE
+            dialog.cart_tv_slider2.visibility=View.GONE
         }
 
         if(item.ventanan.toInt()==2)
-        { dialog.vmodfru_tv_seekbar1.setText(array_size[(item.tamano)])
-          dialog.vmodfru_sb_seekbar1.progress=(item.tamano)
-          dialog.vmodfru_tv_seekbar2.visibility=View.GONE
-          dialog.vmodfru_sb_seekbar2.visibility=View.GONE
+        { dialog.cart_tv_slider1.setText(array_size[(item.tamano)])
+          dialog.cart_sb_slider1.progress=(item.tamano)
+          dialog.cart_tv_slider2.visibility=View.GONE
+          dialog.cart_sb_slider2.visibility=View.GONE
         }
         else if(item.ventanan.toInt()==3){
-            dialog.vmodfru_tv_seekbar1.setText(array_maduration[(item.madure)])
-            dialog.vmodfru_sb_seekbar1.progress=(item.madure)
-            dialog.vmodfru_sb_seekbar2.visibility=View.GONE
-            dialog.vmodfru_tv_seekbar2.visibility=View.GONE
+            dialog.cart_tv_slider1.setText(array_maduration[(item.madure)])
+            dialog.cart_sb_slider1.progress=(item.madure)
+            dialog.cart_sb_slider2.visibility=View.GONE
+            dialog.cart_tv_slider2.visibility=View.GONE
         }
         else{
-            dialog.vmodfru_sb_seekbar1.progress=(item.tamano)
-            dialog.vmodfru_tv_seekbar1.text=array_size[(item.tamano)]
-            dialog.vmodfru_sb_seekbar2.progress=(item.madure)
-            dialog.vmodfru_tv_seekbar2.text=array_maduration[(item.madure)]
+            dialog.cart_sb_slider1.progress=(item.tamano)
+            dialog.cart_tv_slider1.text=array_size[(item.tamano)]
+            dialog.cart_sb_slider2.progress=(item.madure)
+            dialog.cart_tv_slider2.text=array_maduration[(item.madure)]
         }
 
 
-        dialog.vmodfru_tv_nombre.setText(item.nombre)
-        dialog.vmodfru_bt_minus.setOnClickListener(this)
-        dialog.vmodfru_bt_plus.setOnClickListener(this)
-        dialog.vmodfru_bt_remover.setOnClickListener(this)
-        dialog.vmodfru_bt_aceptar.setOnClickListener(this)
+        dialog.cart_tv_name.setText(item.nombre)
+        dialog.cart_ib_minus.setOnClickListener(this)
+        dialog.cart_ib_plus.setOnClickListener(this)
+        dialog.cart_bt_remover.setOnClickListener(this)
+        dialog.cart_bt_ingresar.setOnClickListener(this)
 
     }
 
@@ -283,13 +283,13 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
         when (p0!!.id){
 
             //dialog modify*************************************************************************
-            R.id.vmodfru_bt_plus->
+            R.id.cart_ib_plus->
                 clickPlusDialog()
-            R.id.vmodfru_bt_minus->
+            R.id.cart_ib_minus->
                 clickMinusDialog()
-            R.id.vmodfru_bt_remover->
+            R.id.cart_bt_remover->
                 clickRemove()
-            R.id.vmodfru_bt_aceptar->
+            R.id.cart_bt_ingresar->
                 clickAccept()
 
             //fragment bascket**********************************************************************
