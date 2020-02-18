@@ -30,6 +30,11 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".updateUserData"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
             android:name=".BascketActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />

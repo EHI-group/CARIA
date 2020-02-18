@@ -45,7 +45,7 @@ class SelectedProduct   :AppCompatActivity(), View.OnClickListener {
         else
             this.aprosel_tv_descripcion.setText(("1 "+product.unidad+" de "+product.nombreMostrar+"."))
 
-        this.aprosel_tv_beneficios.setText(product.beneficios)
+        //this.aprosel_tv_beneficios.setText(product.beneficios)
         this.aprosel_tv_nombre.setText(product.nombreMostrar)
         this.aprosel_tv_total.setText(product.precio)
 

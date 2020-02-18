@@ -2,6 +2,8 @@ package com.mateocvas.caria.ui.others
 
 import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,16 +13,50 @@ import androidx.lifecycle.ViewModelProviders
 import com.mateocvas.caria.R
 import com.mateocvas.caria.RegisterActivity
 import kotlinx.android.synthetic.main.fragment_others.view.*
+import android.view.KeyEvent
+import com.mateocvas.caria.updateUserData
+import kotlinx.android.synthetic.main.ventana_confirmar.*
+
 
 class OthersFragment : Fragment(),View.OnClickListener {
 
     lateinit var  dialog:Dialog
     lateinit var root:View
 
+
+    override fun onResume() {
+
+        super.onResume()
+
+        view!!.isFocusableInTouchMode = true
+        view!!.requestFocus()
+        view!!.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+
+                return if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    val dialog=Dialog(root.context)
+                    dialog.setContentView(R.layout.ventana_confirmar)
+                    dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+                    dialog.vconfirm_bt_cancelar.setOnClickListener {
+                        dialog.dismiss() }
+                    dialog.vconfirm_bt_aceptar.setOnClickListener {
+                        activity!!.finish()
+                    }
+                    dialog.show()
+
+                    true
+
+                } else false
+
+            }
+        })
+    }
+
+
     override fun onClick(p0: View?) {
         when (p0!!.id){
             R.id.fothers_bt_actualizar->{
-                startActivity(Intent(root.context,RegisterActivity::class.java))
+                startActivity(Intent(root.context,updateUserData::class.java))
              }
 
             R.id.fothers_bt_agradecimientos->{

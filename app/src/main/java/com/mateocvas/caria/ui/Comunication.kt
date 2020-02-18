@@ -480,13 +480,15 @@ class Comunication:ViewModel() {
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
+
                     for (producto in task.result!!) {
-                        Log.d("errorres",producto["nombre"] as String)
+                        Log.wtf("errorres",producto["nombre"] as String)
+
                         data_fruver.add(
                             ItemProduct(
                                 producto["nombre"] as String,
                                 producto["nombreMostrar"] as String,
-                                funciones.formato(44),
+                                funciones.formato(producto["precio"] as Long),
                                 1,
                                 false,
                                 producto["unidad"] as String,
@@ -516,11 +518,12 @@ class Comunication:ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (producto in task.result!!) {
+
                         data_food.add(
                             ItemProduct(
                                 producto["nombre"] as String,
                                 producto["nombreMostrar"] as String,
-                                funciones.formato(44),
+                                funciones.formato(producto["precio"] as Long),
                                 1,
                                 false,
                                 producto["unidad"] as String,
@@ -550,7 +553,7 @@ class Comunication:ViewModel() {
                             ItemProduct(
                                 producto["nombre"] as String,
                                 producto["nombreMostrar"] as String,
-                                funciones.formato(44),
+                                funciones.formato(producto["precio"] as Long),
                                 1,
                                 false,
                                 producto["unidad"] as String,

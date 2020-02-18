@@ -19,6 +19,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.firebase.firestore.FirebaseFirestore
 import com.mateocvas.caria.items.ItemProduct
+import kotlinx.android.synthetic.main.ventana_confirmar.*
+import kotlinx.android.synthetic.main.ventana_confirmar_envio.*
 
 class Principal : AppCompatActivity(){
 
@@ -29,40 +31,39 @@ class Principal : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
+
+
+
+        begin()
+
+    }
+
+
+
+
+
+
+
+    fun  begin () {
+
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
         val navController = findNavController(R.id.nav_host_fragment)
-
-
-
-        //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-        //firstInit()
 
-        GetCloudBase()
-        dialog= Dialog(this)
+        dialog = Dialog(this)
         dialog.setCancelable(false)
-        dialog.getWindow()?.setBackgroundDrawable( ColorDrawable(Color.TRANSPARENT));
-    }
-
-
-
-
-
-
-
-    fun  GetCloudBase () {
-
-        val products = ArrayList<ItemProduct>()
-
+        dialog.setContentView(R.layout.ventana_confirmar)
+        dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        dialog.vconfirm_bt_cancelar.setOnClickListener {
+            dialog.dismiss() }
+        dialog.vconfirm_bt_aceptar.setOnClickListener {
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+        }
 
     }
 
 
-    override fun onActivityReenter(resultCode: Int, data: Intent?) {
-        Toast.makeText(this, "hola",Toast.LENGTH_LONG).show()
-        super.onActivityReenter(resultCode, data)
 
-
-    }
 }

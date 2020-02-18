@@ -11,8 +11,8 @@
         android:id="@+id/aregister_est_register"
         style="@style/normal_tile_greendark"
         android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="52dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:fontFamily="@font/comfortaa_bold"
         android:text="@string/app_name"
         android:textColor="@color/color_purple"
@@ -27,7 +27,7 @@
         style="@style/normal_edittext"
         android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
 
         android:fontFamily="@font/nunito_light"
@@ -71,14 +71,16 @@
         style="@style/normal_boton"
         android:layout_width="100dp"
         android:layout_height="40dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/redondo2"
         android:fontFamily="@font/nunito_bold"
         android:text="@string/boton_aceptar"
+        app:layout_constraintBottom_toTopOf="@+id/textView63"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aregister_et_aldress" />
+        app:layout_constraintTop_toBottomOf="@+id/aregister_et_aldress"
+        app:layout_constraintVertical_bias="0.83" />
 
     <EditText
         android:id="@+id/aregister_et_aldress"
@@ -100,22 +102,20 @@
         android:id="@+id/textView63"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginBottom="32dp"
         android:text="@string/Terminos_Condiciones"
         android:textAlignment="center"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aregister_bt_done"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView64"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="32dp"
         android:text="@string/ciudad"
         android:textColor="@color/color_purple"
         android:textSize="15sp"
