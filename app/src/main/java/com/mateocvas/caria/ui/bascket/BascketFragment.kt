@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ import com.mateocvas.caria.items.ItemProduct
 import com.mateocvas.caria.ui.Comunication
 import kotlinx.android.synthetic.main.activity_basket.view.*
 import kotlinx.android.synthetic.main.activity_product_selected.*
+import kotlinx.android.synthetic.main.ventana_confirmar.*
 import kotlinx.android.synthetic.main.ventana_confirmar_envio.*
 import kotlinx.android.synthetic.main.ventana_carrito.*
 import java.lang.Exception
@@ -55,6 +57,39 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
 
     private val array_size =arrayOf(app_context.getString(R.string.seekbar_tam0),app_context.getString(R.string.seekbar_tam1),app_context.getString(R.string.seekbar_tam2))
     private val array_maduration=arrayOf(app_context.getString(R.string.seekbar_mad0), app_context.getString(R.string.seekbar_mad1),app_context.getString(R.string.seekbar_mad2))
+
+
+
+
+    override fun onResume() {
+
+        super.onResume()
+
+        view!!.isFocusableInTouchMode = true
+        view!!.requestFocus()
+        view!!.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+
+                return if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    val dialog=Dialog(root.context)
+                    dialog.setContentView(R.layout.ventana_confirmar)
+                    dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+                    dialog.vconfirm_bt_cancelar.setOnClickListener {
+                        dialog.dismiss() }
+                    dialog.vconfirm_bt_aceptar.setOnClickListener {
+                        activity!!.finish()
+                    }
+                    dialog.show()
+
+                    true
+
+                } else false
+
+            }
+        })
+    }
+
+
 
 
     override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {

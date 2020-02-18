@@ -24,8 +24,7 @@ class RegisterActivity :AppCompatActivity(),View.OnClickListener {
             this.aregister_et_name.setError(this.getString(R.string.error_not_fill))
         else if (temp[1].equals(""))
             this.aregister_et_numero.setError(this.getString(R.string.error_not_fill))
-        else if (temp[3].equals(""))
-            this.aregister_et_aldress.setError(this.getString(R.string.error_not_fill))
+
         else if (temp[1].length != 10 && temp[1].length != 7)
             this.aregister_et_numero.setError(this.getString(R.string.error_digit));
         else {
@@ -35,24 +34,21 @@ class RegisterActivity :AppCompatActivity(),View.OnClickListener {
                     editor.putString("name", temp[0])
                     editor.putString("number1", temp[1])
                     editor.putString("city", this.aregister_sp_spinner.selectedItem as String)
-                    editor.putString("aldres", temp[3])
+                    editor.putString("aldres", temp[2])
                     editor.putBoolean("first", true)
                     editor.apply()
                     FirebaseFirestore.getInstance().collection("control").document(FirebaseAuth.getInstance().currentUser!!.uid).set( hashMapOf(
                         "estado" to "0"))
                     val intent2= Intent(this,Principal::class.java)
 
-                    startActivity(intent2)
+                    startActivityForResult(intent2,4)
 
 
 
-                } else
-                    Toast.makeText(
-                        this,
-                        getString(R.string.toast_error_registro_incompleto),
-                        Toast.LENGTH_LONG
-                    ).show()
-                // ...
+                }
+                else{
+                    Toast.makeText(this,getString(R.string.toast_error_conexion),Toast.LENGTH_LONG).show()
+                }
             }
 
 
@@ -95,6 +91,9 @@ class RegisterActivity :AppCompatActivity(),View.OnClickListener {
 
     }
 
+
+
+
     fun firstInit(){
 
 
@@ -103,11 +102,15 @@ class RegisterActivity :AppCompatActivity(),View.OnClickListener {
 
         if(cond){
             val intent2= Intent(this,Principal::class.java)
-            startActivity(intent2)
+            startActivityForResult(intent2,4)
         }
 
 
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        finish()
     }
 
 

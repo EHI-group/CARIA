@@ -24,7 +24,12 @@ class SplashActivity : AppCompatActivity() {
 
     private fun goToLoginActivity( ){
         val intent = Intent(this,RegisterActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent,4)
+        finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         finish()
     }
 

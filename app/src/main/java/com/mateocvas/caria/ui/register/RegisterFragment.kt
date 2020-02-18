@@ -2,7 +2,10 @@ package com.mateocvas.caria.ui.register
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,10 +19,46 @@ import com.mateocvas.caria.adapters.AdapterRecyclerOrder
 import com.mateocvas.caria.items.ItemOrder
 import com.mateocvas.caria.ui.Comunication
 import kotlinx.android.synthetic.main.fragment_historial.view.*
+import kotlinx.android.synthetic.main.ventana_confirmar.*
 import kotlinx.android.synthetic.main.ventana_pedido_seleccionado.*
 import java.lang.Exception
 
 class RegisterFragment : Fragment() {
+
+
+
+
+    override fun onResume() {
+
+        super.onResume()
+
+        view!!.isFocusableInTouchMode = true
+        view!!.requestFocus()
+        view!!.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+
+                return if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    val dialog=Dialog(root.context)
+                    dialog.setContentView(R.layout.ventana_confirmar)
+                    dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+                    dialog.vconfirm_bt_cancelar.setOnClickListener {
+                        dialog.dismiss() }
+                    dialog.vconfirm_bt_aceptar.setOnClickListener {
+                        activity!!.finish()
+
+                    }
+                    dialog.show()
+
+                    true
+
+                } else false
+
+            }
+        })
+    }
+
+
+
 
     lateinit var model: RegisterViewModel
     private lateinit var comunication: Comunication
@@ -38,6 +77,9 @@ class RegisterFragment : Fragment() {
         setObservers()
         return root
     }
+
+
+
 
     fun begin(){
         val preferences = root.context.getSharedPreferences("user", Context.MODE_PRIVATE)

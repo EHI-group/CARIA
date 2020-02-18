@@ -1,12 +1,15 @@
 package com.mateocvas.caria.ui.shoop
 
 
+import android.app.Dialog
 import android.content.res.Configuration
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 
 import android.util.TypedValue
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +26,7 @@ import com.mateocvas.caria.R
 import com.mateocvas.caria.ui.Comunication
 
 import kotlinx.android.synthetic.main.fragment_shop.view.*
+import kotlinx.android.synthetic.main.ventana_confirmar.*
 import org.w3c.dom.Text
 import java.lang.Exception
 import java.util.*
@@ -31,9 +35,10 @@ import kotlin.concurrent.schedule
 
 class ShoopFragment : Fragment(),TabHost.OnTabChangeListener{
 
-    
+     var tam2=0
 
-     lateinit var root:View
+
+    lateinit var root:View
 
      lateinit var model:ShoopViewModel
      lateinit var comunication:Comunication
@@ -41,6 +46,35 @@ class ShoopFragment : Fragment(),TabHost.OnTabChangeListener{
      private val tabs=ArrayList<TextView>()
      private val tabs_back=ArrayList<View>()
 
+
+
+    override fun onResume() {
+
+        super.onResume()
+
+        view!!.isFocusableInTouchMode = true
+        view!!.requestFocus()
+        view!!.setOnKeyListener(object : View.OnKeyListener {
+            override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+
+                return if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+                    val dialog=Dialog(root.context)
+                    dialog.setContentView(R.layout.ventana_confirmar)
+                    dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+                    dialog.vconfirm_bt_cancelar.setOnClickListener {
+                        dialog.dismiss() }
+                    dialog.vconfirm_bt_aceptar.setOnClickListener {
+                        activity!!.finish()
+                    }
+                    dialog.show()
+
+                    true
+
+                } else false
+
+            }
+        })
+    }
 
 
 
@@ -77,6 +111,7 @@ class ShoopFragment : Fragment(),TabHost.OnTabChangeListener{
 
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -98,6 +133,9 @@ class ShoopFragment : Fragment(),TabHost.OnTabChangeListener{
         model.begin(this)
 
          root = inflater.inflate(R.layout.fragment_shop, container, false)
+       tam2= root.textView.height
+
+
         setTab(root)
         setAdapters()
         setListeners()
@@ -153,21 +191,19 @@ fun setTab(view: View){
 
 
 
-
-
-
-
         model.adapter_fruver.notifyDataSetChanged()
 
         root.fshoop_rv_food.setHasFixedSize(false)
         root.fshoop_rv_food.layoutManager = LinearLayoutManager(root.context)
         root.fshoop_rv_food.adapter=model.adapter_food
+        root.fshoop_rv_food.addOnScrollListener (ListenerRecycler())
         model.adapter_fruver.notifyDataSetChanged()
 
 
         root.fshoop_rv_medicinal.setHasFixedSize(false)
         root.fshoop_rv_medicinal.layoutManager = LinearLayoutManager(root.context)
         root.fshoop_rv_medicinal.adapter=model.adapter_medicinal
+        root.fshoop_rv_medicinal.addOnScrollListener (ListenerRecycler())
         model.adapter_fruver.notifyDataSetChanged()
 
     }
@@ -202,9 +238,6 @@ fun setTab(view: View){
     private inner class ListenerRecycler:RecyclerView.OnScrollListener () {
         var arriba:Long=0
         var abajo:Long=0
-        val pararam1=root.fshoop_et_search.layoutParams as ConstraintLayout.LayoutParams
-        val tam1=root.fshoop_et_search.height
-        val tam2=root.textView.height
         val pararam2=root.textView.layoutParams as ConstraintLayout.LayoutParams
 
 
