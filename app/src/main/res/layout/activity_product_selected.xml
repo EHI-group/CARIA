@@ -75,9 +75,9 @@
                 android:text="9.999"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView43"
-                app:layout_constraintStart_toEndOf="@+id/textView43"
-                app:layout_constraintTop_toTopOf="@+id/textView43" />
+                app:layout_constraintBottom_toBottomOf="@+id/aprosel_est_total"
+                app:layout_constraintStart_toEndOf="@+id/aprosel_est_total"
+                app:layout_constraintTop_toTopOf="@+id/aprosel_est_total" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline9"
@@ -116,7 +116,7 @@
                 android:layout_marginTop="36dp"
                 android:contentDescription="@string/imagen"
                 app:layout_constraintStart_toStartOf="@+id/guideline9"
-                app:layout_constraintTop_toBottomOf="@+id/textView43"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_est_total"
                 app:srcCompat="@drawable/button_minus_morado" />
 
             <TextView
@@ -230,7 +230,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
             <TextView
-                android:id="@+id/textView43"
+                android:id="@+id/aprosel_est_total"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
@@ -257,7 +257,7 @@
                 app:layout_constraintTop_toTopOf="@+id/textView25" />
 
             <TextView
-                android:id="@+id/textView44"
+                android:id="@+id/aprosel_tv_preciunitario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"

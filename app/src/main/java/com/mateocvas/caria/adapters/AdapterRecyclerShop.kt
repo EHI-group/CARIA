@@ -65,9 +65,9 @@ class AdapterRecyclerShop(val context: ShoopFragment, val items: ArrayList<ItemP
             else if(item.path.equals(view.context.getString(R.string.tag_medicinal))){
 
                 if(item.alreadyBougtth==false)
-                    card.setCardBackgroundColor(context.getColor(R.color.medicinal))
+                    card.setCardBackgroundColor(context.getColor(R.color.color_withe))
                 else
-                    card.setCardBackgroundColor(context.getColor(R.color.selected_medicinal))
+                    card.setCardBackgroundColor(context.getColor(R.color.selected_food))
             }
             else{
                 if(item.alreadyBougtth==false)

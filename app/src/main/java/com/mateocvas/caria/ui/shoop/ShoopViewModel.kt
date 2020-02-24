@@ -21,32 +21,27 @@ import com.mateocvas.caria.items.ItemProduct
 import com.mateocvas.caria.ui.Comunication
 import kotlinx.android.synthetic.main.activity_product_selected.*
 import java.lang.Exception
+import java.util.*
 import kotlin.collections.ArrayList
 
 class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.OnSeekBarChangeListener {
     override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
 
 
-        if(selected_item.path.equals(app_context.getString(R.string.tag_fruver)))
-            if(p0!!.id==R.id.aprosel_sb_slider1)
-                if(selected_item.ventanan.toInt()==2 ||selected_item.ventanan.toInt()==4){
-                    selected_item.tamano=p1
-                    dialog.aprosel_tv_slider1.setText(("Tamaño: "+array_size[p1]))
-                    //if(p1==2 && aux==1 )
-                      //  selected_item.precio=funciones.formato((funciones.desformato(selected_item.precio)*1.25).toLong())
 
+            if(p0!!.id==R.id.aprosel_sb_slider1){
+                    selected_item.tamano=p1
+                    dialog.aprosel_tv_slider1.setText(( tipo+" "+array_size[p1]))
+                    val new_amounto=(amount*funciones.desformato(selected_item.precio)*selected_item.porcentaje[p1]).toLong()
+                    dialog.aprosel_tv_total.setText(funciones.formato(total+new_amounto))
+                    dialog.aprosel_tv_preciunitario.setText(funciones.formato(new_amounto))
                 }
                 else{
                     selected_item.madure=p1
-                    dialog.aprosel_tv_slider1.setText(("Maduracion: "+array_maduration[p1]))
+                    dialog.aprosel_tv_slider2.setText((selected_item.tipo2+" "+array_maduration[p1]))
                 }
 
-        else {
-            dialog.aprosel_tv_slider2.setText(("Maduracion: "+array_maduration[p1]))
-            selected_item.madure = p1
-        }
 
-        aux=p1
     }
 
     override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -58,10 +53,11 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
     val db=FirebaseFirestore.getInstance()
     val funciones=Funciones()
     val app_context=MyApp.instance.applicationContext
-    val array_size =arrayOf(app_context.getString(R.string.seekbar_tam0),app_context.getString(R.string.seekbar_tam1),app_context.getString(R.string.seekbar_tam2))
-    val array_maduration=arrayOf(app_context.getString(R.string.seekbar_mad0), app_context.getString(R.string.seekbar_mad1),app_context.getString(R.string.seekbar_mad2))
+    val array_size =ArrayList<String>()
+    val array_maduration=ArrayList<String>()
+    var tipo:String=""
 
-    var aux=0
+
     lateinit var toast:Toast
     val warnings=Warinings()
     lateinit var dialog:Dialog
@@ -71,6 +67,8 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
     var total:Long=0
     var amount:Int=1
     private lateinit var dependencia: ShoopFragment
+
+    val com_edit_change=MutableLiveData<Boolean>()
 
 
     val data_food=ArrayList<ItemProduct>()
@@ -178,8 +176,8 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
     fun begin(fragment:ShoopFragment){
 
 
-            toast= Toast.makeText(fragment.context, app_context.getString(R.string.toast_error_agregado_previamente),Toast.LENGTH_LONG)
-            toast.duration=Toast.LENGTH_LONG
+
+
             dialog = Dialog(fragment.context!!)
             dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             dialog.setContentView(R.layout.activity_product_selected)
@@ -261,11 +259,12 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
     // Listener autocompletado
     fun autoComplete(text:String){
 
+
         if(selected_tab.equals(app_context.getString(R.string.tag_tab1))) {
             data_fruver_search.clear()
 
             for (fruver in data_fruver)
-                if (fruver.nombre.contains(text)) {
+                if (fruver.nombreMostrar.toLowerCase(Locale.getDefault()).contains(text)) {
                     data_fruver_search.add(fruver)
                 }
             adapter_fruver.notifyDataSetChanged()
@@ -273,7 +272,7 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
         else if(selected_tab.equals(app_context.getString(R.string.tag_tab2))){
                 data_food_search.clear()
                 for(food in data_food)
-                    if (food.nombre.contains(text)){
+                    if (food.nombreMostrar.toLowerCase(Locale.getDefault()).contains(text)){
                         data_food_search.add(food)
                     }
                  adapter_food.notifyDataSetChanged()
@@ -281,12 +280,14 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
 
         else {
             data_medicinal_search.clear()
-            for (medicinal in data_food)
-                if (medicinal.nombre.contains(text)) {
-                    data_food_search.add(medicinal)
+            for (medicinal in data_medicinal)
+                if (medicinal.nombreMostrar.toLowerCase(Locale.getDefault()).contains(text)) {
+                    data_medicinal_search.add(medicinal)
                 }
             adapter_medicinal.notifyDataSetChanged()
         }
+        com_edit_change.value=false
+
     }
 
     //unlocks the slected item in its respective lis and send it to the market
@@ -299,12 +300,16 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
         else
             data_fruver_search.find { it.nombre.equals(selected_item.nombre)}!!.alreadyBougtth=true
 
+        selected_item.cantidad=amount
         comunication.addItemBascket(selected_item)
+        comunication.set_total(funciones.desformato(dialog.aprosel_tv_total.text.toString()))
         dialog.dismiss()
     }
 
     fun itemSlected(item:ItemProduct){
         selected_item=item
+        amount=1
+        total=comunication.total
 
         if(item.alreadyBougtth)
             toast.show()
@@ -312,7 +317,10 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
             GlideApp.with(dialog.context)
                 .load(FirebaseStorage.getInstance().reference.child(item.path + "/" + item.nombre + ".png"))
                 .into(dialog.aprosel_iv_icono)
-            dialog.aprosel_tv_total.setText(item.precio)
+            dialog.aprosel_tv_unidad.setText("1")
+            dialog.aprosel_tv_total.setText(funciones.formato(total+funciones.desformato(item.precio)))
+            dialog.aprosel_tv_preciunitario.setText(item.precio)
+            dialog.aprosel_tv_total.setText(funciones.formato(total+funciones.desformato(item.precio)))
             if(item.unidad.equals("1"))
                 dialog.aprosel_tv_descripcion.setText(("1 ${item.nombreMostrar} (a granel)."))
             else
@@ -329,18 +337,30 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
                 dialog.aprosel_sb_slider1.visibility=View.GONE
                 dialog.aprosel_tv_slider2.visibility=View.GONE
                 dialog.aprosel_sb_slider2.visibility=View.GONE}
-            else if(item.ventanan.toInt()==2 ||item.ventanan.toInt()==3 ){
-                dialog.aprosel_sb_slider1.progress=1
+
+            else if(item.ventanan.toInt()==2  ){
+                array_size.clear()
+                array_size.addAll(item.array)
+                dialog.aprosel_sb_slider1.max=array_size.size-1
+                dialog.aprosel_sb_slider1.progress=0
+                dialog.aprosel_tv_preciunitario.setText(funciones.formato(funciones.desformato(item.precio)*item.porcentaje[0].toLong()))
+                tipo=item.tipo
                 dialog.aprosel_tv_slider2.visibility=View.GONE
                 dialog.aprosel_sb_slider2.visibility=View.GONE
-                if(item.ventanan.toInt()==2)
-                    dialog.aprosel_tv_slider1.setText(array_size[1])
-                else if(item.ventanan.toInt()==3)
-                    dialog.aprosel_tv_slider1.setText(array_maduration[1])
             }
 
 
+            else if(item.ventanan.toInt()==3 ){
+                array_size.clear()
+                array_size.addAll(item.array)
+                array_maduration.clear()
+                array_maduration.addAll(item.array2)
+                dialog.aprosel_sb_slider1.max=array_size.size-1
+                dialog.aprosel_sb_slider1.progress=0
+                dialog.aprosel_tv_preciunitario.setText(funciones.formato(funciones.desformato(item.precio)*item.porcentaje[0].toLong()))
+                tipo=item.tipo
 
+            }
 
 
             dialog.show()
@@ -349,10 +369,12 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
 
     //button plus
     fun clickPlus(){
-        total += funciones.desformato(selected_item.precio)
         amount++
         dialog.aprosel_tv_unidad.setText(amount.toString())
-        dialog.aprosel_tv_total.setText(funciones.formato(funciones.desformato(selected_item.precio)*amount))
+        var price=funciones.desformato(selected_item.precio)*amount
+        if(selected_item.ventanan.toInt()==2 || selected_item.ventanan.toInt()==4 )
+            price=(selected_item.porcentaje[dialog.aprosel_sb_slider1.progress]*price).toLong()
+        dialog.aprosel_tv_total.setText(funciones.formato(price+total))
     }
 
     //button minus
@@ -360,17 +382,20 @@ class ShoopViewModel : ViewModel(),View.OnClickListener, TextWatcher, SeekBar.On
         if(amount==1)
             warnings.prosel_minus(dialog.context)
         else{
-            total -= funciones.desformato(selected_item.precio)
             amount--
             dialog.aprosel_tv_unidad.setText(amount.toString())
-            dialog.aprosel_tv_total.setText( funciones.formato(funciones.desformato(selected_item.precio)*amount))
+            var price=funciones.desformato(selected_item.precio)*amount
+            if(selected_item.ventanan.toInt()==2 || selected_item.ventanan.toInt()==3 )
+                price=(selected_item.porcentaje[dialog.aprosel_sb_slider1.progress]*price).toLong()
+            dialog.aprosel_tv_total.setText(funciones.formato(total+price))
         }
 
     }
 
     // ******************************LISTENERS****************************************
     override fun afterTextChanged(p0: Editable?) {
-        autoComplete(p0.toString())
+        com_edit_change.value=true
+        autoComplete(p0.toString().toLowerCase(Locale.getDefault()))
     }
     override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
     }
