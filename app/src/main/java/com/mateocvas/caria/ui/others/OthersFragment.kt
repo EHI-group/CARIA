@@ -50,6 +50,9 @@ class OthersFragment : Fragment(),View.OnClickListener {
 
             }
         })
+
+
+
     }
 
 

@@ -126,19 +126,19 @@ class RegisterFragment : Fragment() {
     // starts dialog for a click event
     fun openWindow(item:ItemOrder){
 
-        var adapter=AdapterRecyclerMarket(null,item.fruver )
+        var adapter=AdapterRecyclerMarket(null,item.fruver,comunication)
         dialog.vpedsel_rv_fruver.adapter=adapter
         dialog.vpedsel_rv_fruver.setHasFixedSize(false)
         dialog.vpedsel_rv_fruver.layoutManager = LinearLayoutManager(root.context)
         adapter.notifyDataSetChanged()
 
-        adapter=AdapterRecyclerMarket(null,item.food )
+        adapter=AdapterRecyclerMarket(null,item.food,comunication)
         dialog.vpedsel_rv_food.adapter=adapter
         dialog.vpedsel_rv_food.setHasFixedSize(false)
         dialog.vpedsel_rv_food.layoutManager = LinearLayoutManager(root.context)
         adapter.notifyDataSetChanged()
 
-        adapter=AdapterRecyclerMarket(null,item.medicinal )
+        adapter=AdapterRecyclerMarket(null,item.medicinal,comunication )
         dialog.vpedsel_rv_medicinal.adapter=adapter
         dialog.vpedsel_rv_medicinal.setHasFixedSize(false)
         dialog.vpedsel_rv_medicinal.layoutManager = LinearLayoutManager(root.context)

@@ -106,6 +106,13 @@
             app:layout_constraintStart_toEndOf="@+id/imarket_tvest_cantidad"
             app:layout_constraintTop_toTopOf="@+id/imarket_tvest_cantidad" />
 
+        <ImageView
+            android:id="@+id/iv_cart_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/cart_delete" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

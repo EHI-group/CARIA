@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -24,8 +25,11 @@ import com.mateocvas.caria.R
 import com.mateocvas.caria.adapters.AdapterRecyclerMarket
 import com.mateocvas.caria.items.ItemProduct
 import com.mateocvas.caria.ui.Comunication
+import kotlinx.android.synthetic.main.activity_basket.*
 import kotlinx.android.synthetic.main.activity_basket.view.*
 import kotlinx.android.synthetic.main.activity_product_selected.*
+import kotlinx.android.synthetic.main.item_market.*
+import kotlinx.android.synthetic.main.item_market.view.*
 import kotlinx.android.synthetic.main.ventana_confirmar.*
 import kotlinx.android.synthetic.main.ventana_confirmar_envio.*
 import kotlinx.android.synthetic.main.ventana_carrito.*
@@ -83,10 +87,15 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
 
                     true
 
+
+
                 } else false
 
             }
         })
+
+
+
     }
 
 
@@ -129,6 +138,8 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
 
         root = inflater.inflate(R.layout.activity_basket, container, false)
 
+
+
         begin()
         setObservers()
         setListeners()
@@ -138,15 +149,21 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
 
     // here we set the recyclers configuration and we instance the vm
     fun begin(){
-        dialog= Dialog(root.context)
-        data_fruver_adapter= AdapterRecyclerMarket(this,data_fruver)
-        data_food_adapter=AdapterRecyclerMarket(this,data_food)
-        data_medicinal_adapter=AdapterRecyclerMarket(this,data_medicinal)
-
-
         comunication=activity?.run {
             ViewModelProviders.of(this).get(Comunication::class.java)
         }?:throw Exception("Invalid Activity")
+
+
+
+
+
+        dialog= Dialog(root.context)
+        data_fruver_adapter= AdapterRecyclerMarket(this,data_fruver,comunication)
+        data_food_adapter=AdapterRecyclerMarket(this,data_food,comunication)
+        data_medicinal_adapter=AdapterRecyclerMarket(this,data_medicinal,comunication)
+
+
+
 
 
 
@@ -162,6 +179,10 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
         root.abask_rv_medicinal.setHasFixedSize(false)
         root.abask_rv_medicinal.layoutManager = LinearLayoutManager(root.context)
         root.abask_rv_medicinal.adapter=data_medicinal_adapter
+
+
+
+
     }
 
     //here we set the listners to the buttons envuar and limpiar
@@ -260,6 +281,7 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
     }
 
 
+
     fun showWindow(item:ItemProduct){
         selected_item=item
         dialog.setContentView(R.layout.ventana_carrito)
@@ -315,6 +337,24 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
     }
 
     override fun onClick(p0: View?) {
+
+        if(data_fruver.size ==0){
+            Log.d("numerofrutasI",data_fruver.size.toString())
+            root.abask_est_fruver.setVisibility(View.GONE)
+        }
+        else {
+            Log.d("numerofrutasV",data_fruver.size.toString())
+            root.abask_est_fruver.setVisibility(View.VISIBLE)
+        }
+
+
+        if(data_food.size ==0){
+            root.abask_est_food.setVisibility(View.GONE)
+        }
+        else {
+            root.abask_est_food.setVisibility(View.VISIBLE)
+        }
+
         when (p0!!.id){
 
             //dialog modify*************************************************************************
@@ -339,9 +379,11 @@ class BascketFragment: Fragment(),View.OnClickListener,SeekBar.OnSeekBarChangeLi
             R.id.vconfirmar_bt_confirmar->
                 clickSend()
 
+
         }
 
     }
+
 
 
 
