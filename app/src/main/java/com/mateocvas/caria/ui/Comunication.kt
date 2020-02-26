@@ -61,7 +61,6 @@ class Comunication:ViewModel() {
 
 
 
-
     init {
         loadData()
 
@@ -83,7 +82,7 @@ class Comunication:ViewModel() {
                 return@addSnapshotListener
             }
             if (snapshot != null && snapshot.exists()) {
-                if(!(snapshot.data!!["estado"] as String)!!.equals("0")) {
+                if(!(snapshot.data!!["estado"] as String).equals("0")) {
                     val pref=app_context.getSharedPreferences("user", Context.MODE_PRIVATE)
                     val editor=pref.edit()
                     editor.putInt("numero",pref.getInt("numero",0)+1)
@@ -102,20 +101,16 @@ class Comunication:ViewModel() {
     fun updatedBascket(item: ItemProduct){
 
         if(item.path.equals(app_context.getString(R.string.tag_food))) {
-            val index=bascket_food.indexOfFirst { it.equals(item.nombre) }
-            total-=(bascket_food[index].cantidad)*funciones.desformato(bascket_food[index].precio)
+            val index=bascket_food.indexOfFirst { it.nombre.equals(item.nombre) }
             bascket_food.set(index, item)
             bascket_food_com.value=bascket_food
         }
         else if(item.path.equals(app_context.getString(R.string.tag_medicinal))) {
-            val index=bascket_medicinal.indexOfFirst { it.equals(item.nombre) }
-            total-=(bascket_medicinal[index].cantidad)*funciones.desformato(bascket_medicinal[index].precio)
+            val index=bascket_medicinal.indexOfFirst { it.nombre.equals(item.nombre) }
             bascket_medicinal.set(index, item)
             bascket_medicinal_com.value=bascket_medicinal
         }
         else {
-            val index=bascket_fruver.indexOfFirst { it.nombre.equals(item.nombre) }
-            total-=(bascket_fruver[index].cantidad)*funciones.desformato(bascket_fruver[index].precio)
             bascket_fruver.set(bascket_fruver.indexOfFirst { it.nombre.equals(item.nombre) }, item)
             bascket_fruver_com.value=bascket_fruver
 
@@ -125,11 +120,22 @@ class Comunication:ViewModel() {
         total=0
 
         for(it in bascket_fruver )
-            total+= it.cantidad*(funciones.desformato(it.precio))
+            if(it.array.size==0)
+                total+= it.cantidad*(funciones.desformato(it.precio))
+            else
+                total+= it.cantidad*(funciones.desformato(it.precio)*item.porcentaje[item.tamano]).toLong()
+
         for(it in bascket_medicinal )
-            total+= it.cantidad*(funciones.desformato(it.precio))
+            if(it.array.size==0)
+                total+= it.cantidad*(funciones.desformato(it.precio))
+            else
+                total+= it.cantidad*(funciones.desformato(it.precio)*item.porcentaje[item.tamano]).toLong()
+
         for(it in bascket_food )
-            total+= it.cantidad*(funciones.desformato(it.precio))
+            if(it.array.size==0)
+                total+= it.cantidad*(funciones.desformato(it.precio))
+            else
+                total+= it.cantidad*(funciones.desformato(it.precio)*item.porcentaje[item.tamano]).toLong()
 
 
 
@@ -139,6 +145,12 @@ class Comunication:ViewModel() {
         base.canastaUpdate(item.nombre,item.cantidad,item.tamano,item.madure,item.tipo,item.mensaje)
     }
 
+
+    fun set_total(tot:Long){
+        total=tot
+        com_total.value=funciones.formato(total)
+    }
+
     // remove one n item from de bascket list and make it unlocked in the shoop
     fun removeItemBascket(item: ItemProduct){
         if(item.path.equals(app_context.getString(R.string.tag_food))){
@@ -146,14 +158,12 @@ class Comunication:ViewModel() {
             (data_food.find {it.nombre.equals(item.nombre) })!!.alreadyBougtth=false
             bascket_food_com.value=bascket_food
             data_food_com.value=data_food
-            total-= item.cantidad*funciones.desformato(item.precio)
         }
         else if(item.path.equals(app_context.getString(R.string.tag_medicinal))){
             bascket_medicinal.removeIf { it.nombre.equals(item.nombre) }
             (data_medicinal.find {it.nombre.equals(item.nombre) })!!.alreadyBougtth=false
             bascket_medicinal_com.value=bascket_fruver
             data_medicinal_com.value=data_fruver
-            total-= item.cantidad*funciones.desformato(item.precio)
 
         }
         else{
@@ -161,8 +171,12 @@ class Comunication:ViewModel() {
             (data_fruver.find {it.nombre.equals(item.nombre) })!!.alreadyBougtth=false
             bascket_fruver_com.value=bascket_fruver
             data_fruver_com.value=data_fruver
-            total-= item.cantidad*funciones.desformato(item.precio)
         }
+        if(item.array.size==0)
+            total-= item.cantidad*funciones.desformato(item.precio)
+        else
+            total-= item.cantidad*(funciones.desformato(item.precio)*item.porcentaje[item.madure]).toLong()
+
         com_total.value=funciones.formato(total)
         base.canastaDelete(item.nombre)
     }
@@ -176,7 +190,6 @@ class Comunication:ViewModel() {
             bascket_food.sortBy { it.nombre }
             bascket_food_com.value=bascket_food
             data_food_com.value=data_food
-
         }
 
 
@@ -199,8 +212,7 @@ class Comunication:ViewModel() {
             data_fruver_com.value=data_fruver
         }
 
-        total+=funciones.desformato(item.precio)*item.cantidad
-        com_total.value=funciones.formato(total)
+
         base.canastaAdd(item.nombre,item.cantidad,item.tamano,item.madure,item.tipo,item.mensaje,item.path)
 
 
@@ -293,15 +305,20 @@ class Comunication:ViewModel() {
                          "name" to item.nombreMostrar,
                          "price" to item.precio,
                          "amount" to item.cantidad,
-                         "mature" to item.madure,
-                         "size" to item.tamano,
+                         "mature" to item.array2[item.madure],
+                         "size" to item.array[item.tamano],
                          "message" to item.mensaje,
                          "tipo" to item.tipoEnviar
                      )
 
                      db.collection("pedidos").document(author.currentUser!!.uid)
                          .collection("fruver").document(item.nombre).set(product)
-                 } }
+                 }
+
+
+
+
+             }
 
 
          db.collection("pedidos/${author.currentUser!!.uid}/fruver")
@@ -316,8 +333,8 @@ class Comunication:ViewModel() {
                          "name" to item.nombreMostrar,
                          "price" to item.precio,
                          "amount" to item.cantidad,
-                         "mature" to item.madure,
-                         "size" to item.tamano,
+                         "mature" to item.array2[item.madure],
+                         "size" to item.array[item.tamano],
                          "message" to item.mensaje,
                          "tipo" to item.tipoEnviar
                      )
@@ -340,8 +357,8 @@ class Comunication:ViewModel() {
                          "name" to item.nombreMostrar,
                          "price" to item.precio,
                          "amount" to item.cantidad,
-                         "mature" to item.madure,
-                         "size" to item.tamano,
+                         "mature" to item.array2[item.madure],
+                         "size" to item.array[item.tamano],
                          "message" to item.mensaje,
                          "tipo" to item.tipoEnviar
                      )
@@ -499,10 +516,24 @@ class Comunication:ViewModel() {
                                 "",
                                 "",
                                 "",
-                                producto["ventana"] as Long
+                                producto["ventana"] as Long,
+                                ArrayList(),
+                                ArrayList(),
+                          1,
+                                "",
+                                ArrayList()
+                            ) )
 
-                            )
-                        )
+                        if (producto["array"] !=null){
+                            data_food.last().array.addAll(producto["array"]as ArrayList<String>)
+                            data_food.last().porcentaje.addAll(producto["porcentaje"]as ArrayList<Double>)
+                            data_food.last().tipo= producto["tipo"] as String
+                        }
+
+                        if(producto["tipo2"]!=null){
+                            data_food.last().tipo2=producto["tipo2"] as String
+                            data_food.last().array2.addAll(producto["array2"]as ArrayList<String>)
+                        }
                     }
                     data_fruver_com.value=data_fruver
                     reloadBadcketFruver()
@@ -532,9 +563,27 @@ class Comunication:ViewModel() {
                                 1, 1,
                                 "",
                                 "","",    "",
-                                producto["ventana"] as Long
+                                producto["ventana"] as Long,
+                                ArrayList(),
+                                ArrayList(),
+                                1,
+                                "",
+                                ArrayList()
                             )
                         )
+
+
+                        if (producto["array"] !=null){
+                          data_food.last().array.addAll(producto["array"]as ArrayList<String>)
+                          data_food.last().porcentaje.addAll(producto["porcentaje"]as ArrayList<Double>)
+                          data_food.last().tipo= producto["tipo"] as String
+                        }
+
+                        if(producto["tipo2"]!=null){
+                            data_food.last().tipo2=producto["tipo2"] as String
+                            data_food.last().array2.addAll(producto["array2"]as ArrayList<String>)
+                        }
+
                     }
                     data_food_com.value=data_food
                     reloadBadcketFood()
@@ -549,7 +598,7 @@ class Comunication:ViewModel() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     for (producto in task.result!!) {
-                        data_fruver.add(
+                        data_medicinal.add(
                             ItemProduct(
                                 producto["nombre"] as String,
                                 producto["nombreMostrar"] as String,
@@ -562,10 +611,25 @@ class Comunication:ViewModel() {
                                 1, 1,
                                 "",
                                 "","",    "",
-                                producto["ventana"] as Long
-
+                                producto["ventana"] as Long,
+                                ArrayList(),
+                                ArrayList(),
+                                1,
+                                "",
+                                ArrayList()
                             )
                         )
+                        if (producto["arrat"] !=null){
+                            data_food.last().array.addAll(producto["array"]as ArrayList<String>)
+                            data_food.last().porcentaje.addAll(producto["porcentaje"]as ArrayList<Double>)
+                            data_food.last().tipo= producto["tipo"] as String
+                        }
+
+                        if(producto["tipo2"]!=null){
+                            data_food.last().tipo2=producto["tipo2"] as String
+                            data_food.last().array2.addAll(producto["array2"]as ArrayList<String>)
+                        }
+
                     }
                     data_medicinal_com.value=data_medicinal
                     reloadBadcketMedicinal()
@@ -584,6 +648,7 @@ class Comunication:ViewModel() {
         val cursor = base.queryAllCanasta(app_context.getString(R.string.tag_fruver))
         cursor.moveToFirst()
         for (i in 0 until cursor.count) {
+            Log.wtf("bugger",(cursor.getString(1)) )
             val item = data_fruver.find { it.nombre.equals(cursor.getString(1)) }!!
             item.cantidad = cursor.getInt(2)
             item.tamano = cursor.getInt(3)
@@ -592,7 +657,10 @@ class Comunication:ViewModel() {
             item.mensaje = cursor.getString(6)
             item.alreadyBougtth = true
             bascket_fruver.add(item)
-            total+=funciones.desformato(item.precio)*item.cantidad
+            if(item.array.size==0)
+                total+= item.cantidad*funciones.desformato(item.precio)
+            else
+                total+= item.cantidad*(funciones.desformato(item.precio)*item.porcentaje[item.tamano]).toLong()
             cursor.moveToNext()
         }
 
@@ -617,7 +685,10 @@ class Comunication:ViewModel() {
             item.alreadyBougtth = true
             bascket_food.add(item)
             cursor.moveToNext()
-            total+=funciones.desformato(item.precio)*item.cantidad
+            if(item.array.size==0)
+                total+= item.cantidad*funciones.desformato(item.precio)
+            else
+                total+= item.cantidad*(funciones.desformato(item.precio)*item.porcentaje[item.tamano]).toLong()
         }
         com_total.value=funciones.formato(total)
         bascket_food_com.value = bascket_food
@@ -638,8 +709,12 @@ class Comunication:ViewModel() {
             item.mensaje = cursor.getString(6)
             item.alreadyBougtth = true
             bascket_medicinal.add(item)
-            total+=funciones.desformato(item.precio)*item.cantidad
+            if(item.array.size==0)
+                total+= item.cantidad*funciones.desformato(item.precio)
+            else
+                total+= item.cantidad*(funciones.desformato(item.precio)*item.porcentaje[item.tamano]).toLong()
             cursor.moveToNext()
+
         }
         com_total.value=funciones.formato(total)
         bascket_medicinal_com.value = bascket_medicinal

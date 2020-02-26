@@ -19,5 +19,10 @@ data class ItemProduct(val nombre:String,
                   var tipo:String,
                   var mensaje:String,
                   var tipoEnviar:String="",
-                  var ventanan:Long
-                  ):Parcelable
+                  var ventanan:Long,
+                  val array: ArrayList<String>,
+                  val porcentaje:ArrayList<Double>,
+                  val peso:Int,
+                  var tipo2:String,
+                  val array2:ArrayList<String>
+                  ) :Parcelable
