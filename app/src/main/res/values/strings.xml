@@ -1,17 +1,31 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string-array name="tipo_productos">
+        <item>frutas</item>
+        <item>verduras</item>
+        <item>otros</item>
+    </string-array>
+
+
+    <string name="botom1">Tienda</string>
+    <string name="botom2">Carrito</string>
+    <string name="botom3">Registro</string>
+    <string name="botom4">Mas…</string>
+
+
 
     <string name="fragment_title_shop">tienda</string>
-    <string name="seekbar_tam0">Tamaño: pequeño</string>
+    <string name="seekbar_tam0" tools:keep="@string/seekbar_tam0">Tamaño: pequeño</string>
     <string name="seekbar_tam1">Tamaño: mediano</string>
-    <string name="seekbar_tam2">Tamaño: grande</string>
+    <string name="seekbar_tam2" tools:keep="@string/seekbar_tam2">Tamaño: grande</string>
 
-    <string name="seekbar_mad0">Maduracion: verede</string>
+    <string name="seekbar_mad0" tools:keep="@string/seekbar_mad0">Maduracion: verede</string>
     <string name="seekbar_mad1">Maduracion: normal</string>
-    <string name="seekbar_mad2">Maduracion: muy maduro</string>
+    <string name="seekbar_mad2" tools:keep="@string/seekbar_mad2">Maduracion: muy maduro</string>
 
-    <string name="tag_fruver">ProductFruve</string>
-    <string name="tag_food">ProductFood</string>
-    <string name="tag_medicinal">ProductMedicinal</string>
+    <string name="tag_fruver" tools:keep="@string/tag_fruver">frutas</string>
+    <string name="tag_food">verduras</string>
+    <string name="tag_medicinal">otros</string>
 
     <string name="tag_tab1">Fruver</string>
     <string name="tag_tab2">Comida</string>
@@ -23,65 +37,65 @@
     <string name="titulo_actualice">Actualice</string>
 
     <string name="app_name">caria</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_open" tools:keep="@string/navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close" tools:keep="@string/navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title" tools:keep="@string/nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle" tools:keep="@string/nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc" tools:keep="@string/nav_header_desc">Navigation header</string>
+    <string name="action_settings" tools:keep="@string/action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_home" tools:keep="@string/menu_home">Home</string>
+    <string name="menu_gallery" tools:keep="@string/menu_gallery">Gallery</string>
+    <string name="menu_slideshow" tools:keep="@string/menu_slideshow">Slideshow</string>
+    <string name="menu_tools" tools:keep="@string/menu_tools">Tools</string>
+    <string name="menu_share" tools:keep="@string/menu_share">Share</string>
+    <string name="menu_send" tools:keep="@string/menu_send">Send</string>
 
 
-    <string name="hint_numero">Numero de celular...</string>
-    <string name="hint_otro_numero">(opcional) Otro numero.</string>
-    <string name="hint_direccion">Tu direccion</string>
+    <string name="hint_numero" tools:keep="@string/hint_numero">Numero de celular...</string>
+    <string name="hint_otro_numero" tools:keep="@string/hint_otro_numero">(opcional) Otro numero.</string>
+    <string name="hint_direccion" tools:keep="@string/hint_direccion">Tu direccion</string>
     <string name="hint_nombre">Tu nombre y apellidos...</string>
 
 
-    <string name="bt_finalzar">Finalizar</string>
-    <string name="bt_atras">Atras</string>
+    <string name="bt_finalzar" tools:keep="@string/bt_finalzar">Finalizar</string>
+    <string name="bt_atras" tools:keep="@string/bt_atras">Atras</string>
 
 
     <string name="error_not_fill">Debes llenar este campo</string>
     <string name="error_digit">El numero de digitos no es correcto</string>
 
-    <string name="sub_title_location">Ubicación</string>
+    <string name="sub_title_location" tools:keep="@string/sub_title_location">Ubicación</string>
 
     <!--Toast-->
-    <string name="toast_error_cantidad_digitos">El número ingresado debe tener 7 o 10 dígitos.</string>
+    <string name="toast_error_cantidad_digitos" tools:keep="@string/toast_error_cantidad_digitos">El número ingresado debe tener 7 o 10 dígitos.</string>
     <string name="toast_error_conexion">Oops, debes tener conexión a internet para que el pedido sea enviado exitosamente.</string>
-    <string name="toast_error_registro_incompleto">Recuerda que debes completar todos los campos para continuar.</string>
-    <string name="toast_error_numero_invalido">Debes ingresar un numero valido, ya sea fijo o celular.</string>
-    <string name="toast_producto_no_disponible">Este producto se encuentra agotado por ahora ¡lo traeremos para ti lo antes posible!</string>
-    <string name="toast_producto_agregado_correctamente">¡Ahora este producto se encuentra en tu carrito de compras!</string>
+    <string name="toast_error_registro_incompleto" tools:keep="@string/toast_error_registro_incompleto">Recuerda que debes completar todos los campos para continuar.</string>
+    <string name="toast_error_numero_invalido" tools:keep="@string/toast_error_numero_invalido">Debes ingresar un numero valido, ya sea fijo o celular.</string>
+    <string name="toast_producto_no_disponible" tools:keep="@string/toast_producto_no_disponible">Este producto se encuentra agotado por ahora ¡lo traeremos para ti lo antes posible!</string>
+    <string name="toast_producto_agregado_correctamente" tools:keep="@string/toast_producto_agregado_correctamente">¡Ahora este producto se encuentra en tu carrito de compras!</string>
     <string name="toast_error_agregado_previamente">Ya seleccionaste con anterioridad éste producto, puedes modificarlo ingresando a él desde el carrito de compras.</string>
     <string name="toast_cargado_en_carrito">Tu pedido ha sido cargado exitosamente en el carrito.</string>
-    <string name="toast_error_pedido_elimniado">Lo sentimos, solo podremos cancelar tu pedido si está en cola, no dudes en contactarnos para consultar las inquietudes que tengas.</string>
+    <string name="toast_error_pedido_elimniado" tools:keep="@string/toast_error_pedido_elimniado">Lo sentimos, solo podremos cancelar tu pedido si está en cola, no dudes en contactarnos para consultar las inquietudes que tengas.</string>
     <string name="toast_pedido_enviado_exitosamente">¡El pedido ha sido enviado exitosamente!</string>
-    <string name="toast_error_epoca_envio_1">Tu pedido se encuentra en trámite, si deseas modificarlo, contáctanos.</string>
-    <string name="toast_error_epoca_envio_2">En estos momentos nos encontramos en entregas, debes esperar hasta el lunes que abramos nuevamente la recepción de pedidos.</string>
+    <string name="toast_error_epoca_envio_1" tools:keep="@string/toast_error_epoca_envio_1">Tu pedido se encuentra en trámite, si deseas modificarlo, contáctanos.</string>
+    <string name="toast_error_epoca_envio_2" tools:keep="@string/toast_error_epoca_envio_2">En estos momentos nos encontramos en entregas, debes esperar hasta el lunes que abramos nuevamente la recepción de pedidos.</string>
     <string name="toast_carrito_vaciado">Listo, Tu carrito ahora se encuentra vacío.</string>
     <string name="toast_correccion_exitosa">Hemos realizado tu corrección con exito.</string>
-    <string name="toast_producto_eliminado">Hecho, este producto se encuentra fuera de tu carrito de compras.</string>
+    <string name="toast_producto_eliminado" tools:keep="@string/toast_producto_eliminado">Hecho, este producto se encuentra fuera de tu carrito de compras.</string>
     <string name="toast_cantidad_positiva">¡Asegúrate de llevar el producto! Para ello la cantidad del mismo debe ser mayor a cero.</string>
-    <string name="toast_error_solo_numeros">No olvides que Tu nombre y apellidos deben contener solo letras.</string>
-    <string name="toast_error_tope">Recuerda que el valor del pedido debe ser mayor a 25.000 COP.</string>
-    <string name="toast_error_login">algo va mal, no hemos podido completar tu registro. Intenta mas tarde.</string>
-    <string name="toast_producto_no_encontrado">Lo sentimos, no hemos encontrado lo que estás buscando.</string>
+    <string name="toast_error_solo_numeros" tools:keep="@string/toast_error_solo_numeros">No olvides que Tu nombre y apellidos deben contener solo letras.</string>
+    <string name="toast_error_tope" tools:keep="@string/toast_error_tope">Recuerda que el valor del pedido debe ser mayor a 25.000 COP.</string>
+    <string name="toast_error_login" tools:keep="@string/toast_error_login">algo va mal, no hemos podido completar tu registro. Intenta mas tarde.</string>
+    <string name="toast_producto_no_encontrado" tools:keep="@string/toast_producto_no_encontrado">Lo sentimos, no hemos encontrado lo que estás buscando.</string>
 
 
     <!--activiy frtua seleccionada-->
-    <string name="activity_fruta_seleccionada_est_unidad_representacion">Una unidad equivale a:</string>
-    <string name="activity_fruta_seleccionada_est_unidad">Total unidad: </string>
-    <string name="activity_fruta_seleccionada_est_cantidad">Unidades: </string>
+    <string name="activity_fruta_seleccionada_est_unidad_representacion" tools:keep="@string/activity_fruta_seleccionada_est_unidad_representacion">Una unidad equivale a:</string>
+    <string name="activity_fruta_seleccionada_est_unidad" tools:keep="@string/activity_fruta_seleccionada_est_unidad">Total unidad: </string>
+    <string name="activity_fruta_seleccionada_est_cantidad" tools:keep="@string/activity_fruta_seleccionada_est_cantidad">Unidades: </string>
     <string name="activity_fruta_seleccionada_est_beneficios">Algunos datos de este alimento.</string>
-    <string name="activity_fruta_seleccionada_est_descripcion">Descripción</string>
+    <string name="activity_fruta_seleccionada_est_descripcion" tools:keep="@string/activity_fruta_seleccionada_est_descripcion">Descripción</string>
 
     <!--ventana aclaraciones-->
     <string name="ventana_aclaraciones_est_servicio">Sobre el servicio:</string>
@@ -106,26 +120,26 @@
     <string name="ventan_agradecimientos_res_aclaracion">Para algunas de las imágenes dentro de la app fue francamente imposible encontrar referencias del autor; así que ante una eventual reclamación, estamos dispuestos a publicar los derechos de autor e inclusión, siendo el caso, a eliminar el contenido.</string>
 
     <!--ventana confirmar envio-->
-    <string name="ventana_confirmar_envio_dia1">Sábado</string>
-    <string name="ventana_confirmar_envio_dia2">Domingo</string>
+    <string name="ventana_confirmar_envio_dia1" tools:keep="@string/ventana_confirmar_envio_dia1">Sábado</string>
+    <string name="ventana_confirmar_envio_dia2" tools:keep="@string/ventana_confirmar_envio_dia2">Domingo</string>
     <string name="ventana_confirmar_envio_total">Total:</string>
-    <string name="ventana_confirmar_envio_sel_fecha">Seleccione la fecha de envío</string>
+    <string name="ventana_confirmar_envio_sel_fecha" tools:keep="@string/ventana_confirmar_envio_sel_fecha">Seleccione la fecha de envío</string>
     <string name="ventana_confirmar_envio_costo_envio">Costo de envío:</string>
-    <string name="ventana_confirmar_envio_hora">Hora:</string>
-    <string name="ventana_confirmar_envio_dia">Día:</string>
+    <string name="ventana_confirmar_envio_hora" tools:keep="@string/ventana_confirmar_envio_hora">Hora:</string>
+    <string name="ventana_confirmar_envio_dia" tools:keep="@string/ventana_confirmar_envio_dia">Día:</string>
     <string name="ventana_confirmar_envio_total_compra">Total compra:</string>
     <string name="ventana_confirmar_envio_direccion">Dirección de envio:</string>
     <string name="ventana_confirmar_envio_pago">Puedes pagar en efectivo o consignando a la cuenta de ahorros bancolombia: 311 798116 29.</string>
 
     <!--ventana contacto-->
-    <string name="ventana_contacto_res_cel_1">319 668 8981</string>
+    <string name="ventana_contacto_res_cel_1" tools:keep="@string/ventana_contacto_res_cel_1">319 668 8981</string>
     <string name="ventana_contacto_res_cel_2">321 687 2056</string>
     <string name="ventana_contacto_res_fijo">451 53 99</string>
     <string name="ventana_contacto_est_fijo">fijo:</string>
     <string name="ventana_contacto_res_correo">arreborverde@gmail.com</string>
     <string name="ventana_contacto_res_facebook">Arrebor verde</string>
     <string name="ventana_contacto_est_instagram">Instagram:</string>
-    <string name="ventana_contacto_res_instagram">arreborverde</string>
+    <string name="ventana_contacto_res_instagram" tools:keep="@string/ventana_contacto_res_instagram">arreborverde</string>
     <string name="ventana_cotacto_res_lugares">Envigado, Bello, Itaguí y Medellín.</string>
     <string name="ventana_contacto_est_lugares">Lugares</string>
     <string name="ventana_contacto_est_celowat">Cel/Whatsapp: </string>
@@ -135,42 +149,42 @@
     <string name="ventana_nosotros_est_redes">Redes</string>
 
     <!--ventana fruta modificar-->
-    <string name="ventana_fruta_modificar_est_total_unidad">Total unidad: </string>
-    <string name="ventana_fruta_modificar_est_total_compra">Total compra: </string>
-    <string name="ventana_fruta_modificar_est_comentario">Comentario</string>
-    <string name="ventana_fruta_modificar_edittext">¿Deseas ser un poco mas especifico?&#8230;Escribe aquí como deseas este productor.(opcional)</string>
+    <string name="ventana_fruta_modificar_est_total_unidad" tools:keep="@string/ventana_fruta_modificar_est_total_unidad">Total unidad: </string>
+    <string name="ventana_fruta_modificar_est_total_compra" tools:keep="@string/ventana_fruta_modificar_est_total_compra">Total compra: </string>
+    <string name="ventana_fruta_modificar_est_comentario" tools:keep="@string/ventana_fruta_modificar_est_comentario">Comentario</string>
+    <string name="ventana_fruta_modificar_edittext" tools:keep="@string/ventana_fruta_modificar_edittext">¿Deseas ser un poco mas especifico?&#8230;Escribe aquí como deseas este productor.(opcional)</string>
 
     <!--ventana inicio 1-->
-    <string name="ventana_inicio_2_res_bienvenido">Bienvenido</string>
-    <string name="ventana_inicio_1_res_bienvenido">Antes de empezar nos gustaría contarte tres pequeñas aclaraciones sobre nuestros servicios, las cuales estarán disponibles en nuestro menú junto otra información que te pueden interesar.</string>
+    <string name="ventana_inicio_2_res_bienvenido" tools:keep="@string/ventana_inicio_2_res_bienvenido">Bienvenido</string>
+    <string name="ventana_inicio_1_res_bienvenido" tools:keep="@string/ventana_inicio_1_res_bienvenido">Antes de empezar nos gustaría contarte tres pequeñas aclaraciones sobre nuestros servicios, las cuales estarán disponibles en nuestro menú junto otra información que te pueden interesar.</string>
 
     <!--ventana inicio 2-->
-    <string name="ventana_inicio_2_est_aclaracion1">Aclaración 1</string>
-    <string name="ventana_inicio_2_res_aclaracion1">La entrega de tu pedido la realizaremos los días miércoles y sábados, y entregaremos lo último que hayas enviado hasta antes del día de envió a las 10 P.M.; así puedes modificar y reenviar tu pedido cuantas veces gustes.</string>
+    <string name="ventana_inicio_2_est_aclaracion1" tools:keep="@string/ventana_inicio_2_est_aclaracion1">Aclaración 1</string>
+    <string name="ventana_inicio_2_res_aclaracion1" tools:keep="@string/ventana_inicio_2_res_aclaracion1">La entrega de tu pedido la realizaremos los días miércoles y sábados, y entregaremos lo último que hayas enviado hasta antes del día de envió a las 10 P.M.; así puedes modificar y reenviar tu pedido cuantas veces gustes.</string>
 
     <!--ventana inicio 3-->
-    <string name="ventana_inicio_3_est_aclaracion2">Aclaración 2</string>
-    <string name="ventana_inicio_3_res_aclaracion2">Tu envío debe sumar como mínimo de $25.000 COP y, además, adicionaremos  $3200 COP al total como gastos de envío.</string>
+    <string name="ventana_inicio_3_est_aclaracion2" tools:keep="@string/ventana_inicio_3_est_aclaracion2">Aclaración 2</string>
+    <string name="ventana_inicio_3_res_aclaracion2" tools:keep="@string/ventana_inicio_3_res_aclaracion2">Tu envío debe sumar como mínimo de $25.000 COP y, además, adicionaremos  $3200 COP al total como gastos de envío.</string>
 
     <!--ventana inicio 4-->
-    <string name="ventana_inicio_4_est_aclaracion3">Aclaración 3</string>
-    <string name="ventana_inicio_4_res_aclaracion3">Puedes deshacer tu pedido mediante el botón borrar del carrito, o usando los respectivos contactos que puedes encontrar en el menú.</string>
+    <string name="ventana_inicio_4_est_aclaracion3" tools:keep="@string/ventana_inicio_4_est_aclaracion3">Aclaración 3</string>
+    <string name="ventana_inicio_4_res_aclaracion3" tools:keep="@string/ventana_inicio_4_res_aclaracion3">Puedes deshacer tu pedido mediante el botón borrar del carrito, o usando los respectivos contactos que puedes encontrar en el menú.</string>
 
     <!--ventana nosotros-->
     <string name="ventana_nosotros_est_quienes">¿Quiénes somos?</string>
     <string name="ventana_nosotros_est_mision">Nuestra Visión</string>
-    <string name="ventana_nosotros_est_vision">Nuestra Misíon</string>
+    <string name="ventana_nosotros_est_vision" tools:keep="@string/ventana_nosotros_est_vision">Nuestra Misíon</string>
     <string name="ventana_nosotros_est_lema">Lema</string>
     <string name="ventana_nosotros_res_quienes">Somos un grupo de personas unidas bajo el propósito de dar una agradable experiencia de mercado. Desde el domicilio, hasta la elección de los productos, prometemos dar lo mejor de nosotros para corresponder así la confianza que nuestros clientes depositan en nosotros.</string>
     <string name="ventana_nosotros_res_mision">Creamos la oportunidad de que obtengas los productos más frescos con mayor facilidad, solo tocando la pantalla de tu móvil accederás a una gran variedad de alimentos cuidadosamente seleccionados, tus comidas nunca volverán a ser las mismas.</string>
-    <string name="ventana_nosotros_res_vision">Consolidarnos para el año 2022 como una de las mejor aplicaciones móviles; capaz de ser eficiente, amigable y segura para obtener alimentos dentro del departamento de Antioquia, haciendo frente a las debilidades con las cuales contamos, tales como el requerimiento de información personal, el uso de tarjetas de crédito e incluso la necesidad de un teléfono móvil.</string>
+    <string name="ventana_nosotros_res_vision" tools:keep="@string/ventana_nosotros_res_vision">Consolidarnos para el año 2022 como una de las mejor aplicaciones móviles; capaz de ser eficiente, amigable y segura para obtener alimentos dentro del departamento de Antioquia, haciendo frente a las debilidades con las cuales contamos, tales como el requerimiento de información personal, el uso de tarjetas de crédito e incluso la necesidad de un teléfono móvil.</string>
     <string name="ventana_nosotros_res_lema">"Llenemos el mundo de música, amor y orgullo".</string>
 
     <!--ventana producto real-->
-    <string name="ventana_producto_real_est_descripcion">Descripción</string>
+    <string name="ventana_producto_real_est_descripcion" tools:keep="@string/ventana_producto_real_est_descripcion">Descripción</string>
 
     <!--- OCIONES MENU-->
-    <string name="menu_item_actualizacion">Actualice su información </string>
+    <string name="menu_item_actualizacion" tools:keep="@string/menu_item_actualizacion">Actualice su información </string>
     <string name="menu_item_aclaraciones">Aclaraciones</string>
     <string name="menu_item_nosotros">Nosotros</string>
     <string name="menu_item_agradecimientos">Agradecimientos</string>
@@ -183,46 +197,46 @@
 
 
     <!--casos pedido enviado-->
-    <string name="adapt_registro_recibido">Recibido</string>
-    <string name="adapt_registro_cola">En cola</string>
-    <string name="adapt_registro_entregado">Entregado</string>
-    <string name="adapt_registro_error">Algo va mal</string>
+    <string name="adapt_registro_recibido" tools:keep="@string/adapt_registro_recibido">Recibido</string>
+    <string name="adapt_registro_cola" tools:keep="@string/adapt_registro_cola">En cola</string>
+    <string name="adapt_registro_entregado" tools:keep="@string/adapt_registro_entregado">Entregado</string>
+    <string name="adapt_registro_error" tools:keep="@string/adapt_registro_error">Algo va mal</string>
 
-    <string name="hint_spiner">Selecciona</string>
-    <string name="error_general">Lo sentimos, algo va mal. Prueba con volver a entrar en la app o reinstalarla de ser necesario.</string>
-    <string name="edittext_actualizar">Actualizar</string>
-    <string name="comentario">Comentario</string>
+    <string name="hint_spiner" tools:keep="@string/hint_spiner">Selecciona</string>
+    <string name="error_general" tools:keep="@string/error_general">Lo sentimos, algo va mal. Prueba con volver a entrar en la app o reinstalarla de ser necesario.</string>
+    <string name="edittext_actualizar" tools:keep="@string/edittext_actualizar">Actualizar</string>
+    <string name="comentario" tools:keep="@string/comentario">Comentario</string>
 
-    <string name="producto_no_disponible">AGOTADO</string>
+    <string name="producto_no_disponible" tools:keep="@string/producto_no_disponible">AGOTADO</string>
 
 
     <string name="ciudad">Ciudad</string>
-    <string name="ubicacion">Ubicación</string>
+    <string name="ubicacion" tools:keep="@string/ubicacion">Ubicación</string>
 
 
     <!---STRING UTILES-->
     <string name="generic_hint">Escribe&#8230;</string>
 
 
-    <string name="historial_de_compras">Historial de compras</string>
+    <string name="historial_de_compras" tools:keep="@string/historial_de_compras">Historial de compras</string>
 
 
-    <string name="boton_siguiente">Listo</string>
+    <string name="boton_siguiente" tools:keep="@string/boton_siguiente">Listo</string>
     <string name="confirmacion_pedido">¿Desea confirmar el pedido con la siguiente información?</string>
 
     <!---****aclaraciones****-->
     <string name="cantidad">Cantidad: </string>
 
-    <string name="precio_unidad">Precio unidad: </string>
+    <string name="precio_unidad" tools:keep="@string/precio_unidad">Precio unidad: </string>
 
 
     <!--- RPRINCIPAL*****************************************************************************-->
     <!--- PESTANA REGISTRO-->
-    <string name="pestana_item_registros_label">Sus últimos pedidos</string>
+    <string name="pestana_item_registros_label" tools:keep="@string/pestana_item_registros_label">Sus últimos pedidos</string>
 
     <!---BOTONES-->
-    <string name="boton_actualizar">Guardar</string>
-    <string name="boton_remover">Remover</string>
+    <string name="boton_actualizar" tools:keep="@string/boton_actualizar">Guardar</string>
+    <string name="boton_remover" tools:keep="@string/boton_remover">Remover</string>
     <string name="boton_aceptar">Aceptar</string>
     <string name="boton_enviar">Enviar</string>
     <string name="boton_limpiar">Limpiar</string>
@@ -230,31 +244,31 @@
     <string name="boton_atras">Atrás</string>
 
 
-    <string name="reciclar">Reciclar</string>
+    <string name="reciclar" tools:keep="@string/reciclar">Reciclar</string>
 
 
-    <string name="titulo_registro">Registro</string>
-    <string name="e_actualizar_usuario_direccion">Dirección</string>
-    <string name="e_actualizar_usuario_Nombre">Nombre:</string>
-    <string name="e_actualizar_usuario_apellidos">Apellidos:</string>
-    <string name="e_actualizar_usuario_Celotel">Movíl ó teléfono:</string>
-    <string name="e_actualizar_usuario_otro">Otro número: </string>
+    <string name="titulo_registro" tools:keep="@string/titulo_registro">Registro</string>
+    <string name="e_actualizar_usuario_direccion" tools:keep="@string/e_actualizar_usuario_direccion">Dirección</string>
+    <string name="e_actualizar_usuario_Nombre" tools:keep="@string/e_actualizar_usuario_Nombre">Nombre:</string>
+    <string name="e_actualizar_usuario_apellidos" tools:keep="@string/e_actualizar_usuario_apellidos">Apellidos:</string>
+    <string name="e_actualizar_usuario_Celotel" tools:keep="@string/e_actualizar_usuario_Celotel">Movíl ó teléfono:</string>
+    <string name="e_actualizar_usuario_otro" tools:keep="@string/e_actualizar_usuario_otro">Otro número: </string>
 
 
     <string name="e_item_lista_carrito_unidad">Precio:</string>
-    <string name="e_item_lista_carrito_cantidad">Cantidad:</string>
+    <string name="e_item_lista_carrito_cantidad" tools:keep="@string/e_item_lista_carrito_cantidad">Cantidad:</string>
 
-    <string name="e_ventana_pedido_seleccionado_historial">Historial de compras</string>
+    <string name="e_ventana_pedido_seleccionado_historial" tools:keep="@string/e_ventana_pedido_seleccionado_historial">Historial de compras</string>
 
-    <string name="e_ventana_fruta_modificar_comentario">Comentario</string>
-    <string name="e_ventana_fruta_modificar_total_compra">Total compra:</string>
-    <string name="e_ventana_fruta_modificar_total_unidad">Total unidad: </string>
-    <string name="titulo_canasta">canasta</string>
+    <string name="e_ventana_fruta_modificar_comentario" tools:keep="@string/e_ventana_fruta_modificar_comentario">Comentario</string>
+    <string name="e_ventana_fruta_modificar_total_compra" tools:keep="@string/e_ventana_fruta_modificar_total_compra">Total compra:</string>
+    <string name="e_ventana_fruta_modificar_total_unidad" tools:keep="@string/e_ventana_fruta_modificar_total_unidad">Total unidad: </string>
+    <string name="titulo_canasta" tools:keep="@string/titulo_canasta">canasta</string>
 
 
     <string name="title_fruver">Frutas</string>
     <string name="title_food">Verduras</string>
-    <string name="title_medicinal">Otros</string>
+    <string name="title_medicinal" tools:keep="@string/title_medicinal">Otros</string>
 
     <string name="title_fsettings">Informacion</string>
     <string name="title_fbasquekt">Carrito</string>
@@ -270,15 +284,15 @@
     <string name="Precio_unidad">Precio unidad: $</string>
     <string name="total_compra">Total compra: </string>
     <string name="informacion_personal">informacion personal</string>
-    <string name="Configuracion">configuración</string>
+    <string name="Configuracion" tools:keep="@string/Configuracion">configuración</string>
     <string name="algo_mas">algo mas</string>
     <string name="mi_perfil">Mi Perfil</string>
-    <string name="Direcciones">Direcciones</string>
+    <string name="Direcciones" tools:keep="@string/Direcciones">Direcciones</string>
     <string name="Informacion_de_pago">Información de pago</string>
-    <string name="notificaciones">Notificaciones</string>
-    <string name="lenguaje">Lenguaje</string>
-    <string name="about_us">Sobre nosotros</string>
-    <string name="cerrar_sesion">Cerrar Sesión</string>
+    <string name="notificaciones" tools:keep="@string/notificaciones">Notificaciones</string>
+    <string name="lenguaje" tools:keep="@string/lenguaje">Lenguaje</string>
+    <string name="about_us" tools:keep="@string/about_us">Sobre nosotros</string>
+    <string name="cerrar_sesion" tools:keep="@string/cerrar_sesion">Cerrar Sesión</string>
     <string name="From">From</string>
     <string name="EHIgroup">EHIgroup</string>
     <string name="Terminos_Condiciones">Al ingresar aceptas nuestro Términos y condiciones y nuestra Política de privacidad</string>
@@ -287,6 +301,6 @@
     <string name="boton_cancelar">cancelar</string>
     <string name="boton_acepar">Acepar</string>
     <string name="msg_confirmar">¿Esta seguro de que deseas salir?</string>
-    <string name="msg_direccion">tu actual direccion es:</string>
+    <string name="msg_direccion" tools:keep="@string/msg_direccion">tu actual direccion es:</string>
 
 </resources>

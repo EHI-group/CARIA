@@ -1,12 +1,11 @@
 package com.mateocvas.caria.ui
 
 import android.content.Context
-import android.os.Build
+import com.google.firebase.database.*
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.mateocvas.caria.Funciones
 import com.mateocvas.caria.MyApp
 import com.mateocvas.caria.R
@@ -16,448 +15,429 @@ import com.mateocvas.caria.items.ItemProduct
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Comunication:ViewModel() {
+class Comunication : ViewModel() {
 
-    var cond= arrayOf(false,true,true)
-    val db= FirebaseFirestore.getInstance()
-    val funciones=Funciones()
-    val base=DBManager(MyApp.instance.applicationContext)
-    val app_context=MyApp.instance.applicationContext
+    var text_fruver=""
+    var text_food=""
+    var text_medicinal=""
 
+    private var item_number=0
+    var item_number_com=MutableLiveData<Int>()
 
+    val funciones = Funciones()
+    private val base = DBManager(MyApp.instance.applicationContext)
+    val app_context: Context = MyApp.instance.applicationContext
+    private val author = FirebaseAuth.getInstance().currentUser!!.uid
 
-
-    private val data_fruver=ArrayList<ItemProduct>()
-    private val data_food=ArrayList<ItemProduct>()
-    private val data_medicinal=ArrayList<ItemProduct>()
-    private val author=FirebaseAuth.getInstance()
-
-
-
-    val data_fruver_com=MutableLiveData<ArrayList<ItemProduct>>()
-    val data_food_com=MutableLiveData<ArrayList<ItemProduct>>()
-    val data_medicinal_com=MutableLiveData<ArrayList<ItemProduct>>()
-
-    val bascket_fruver=ArrayList<ItemProduct>()
-    val bascket_food=ArrayList<ItemProduct>()
+    var tabind=0
 
 
-    val functiones=Funciones()
-    val com_data_pedidos=MutableLiveData<ArrayList<ItemOrder>>()
-    val data_pedidos=ArrayList<ItemOrder>()
-
-    val bascket_fruver_com= MutableLiveData<ArrayList<ItemProduct>>()
-
-    val bascket_food_com= MutableLiveData<ArrayList<ItemProduct>>()
-
-    val bascket_medicinal=ArrayList<ItemProduct>()
-    val bascket_medicinal_com= MutableLiveData<ArrayList<ItemProduct>>()
-
-    var total:Long=0
-    val com_total=MutableLiveData<String>()
+    private val data_fruver = ArrayList<ItemProduct>()
+    private val data_food = ArrayList<ItemProduct>()
+    private val data_medicinal = ArrayList<ItemProduct>()
 
 
-    val com_clear_bascket=MutableLiveData<Boolean>()
+    val data_fruver_com = MutableLiveData<ArrayList<ItemProduct>>()
+    val data_food_com = MutableLiveData<ArrayList<ItemProduct>>()
+    val data_medicinal_com = MutableLiveData<ArrayList<ItemProduct>>()
+
+    private val bascket_fruver = ArrayList<ItemProduct>()
+    private val bascket_food = ArrayList<ItemProduct>()
+
+
+    private val functiones = Funciones()
+    val com_data_pedidos = MutableLiveData<ArrayList<ItemOrder>>()
+    private val data_pedidos = ArrayList<ItemOrder>()
+
+    val bascket_fruver_com = MutableLiveData<ArrayList<ItemProduct>>()
+
+    val bascket_food_com = MutableLiveData<ArrayList<ItemProduct>>()
+
+    private val bascket_medicinal = ArrayList<ItemProduct>()
+    val bascket_medicinal_com = MutableLiveData<ArrayList<ItemProduct>>()
+
+    private val all_basckets= arrayOf(bascket_fruver,bascket_food,bascket_medicinal)
+
+
+    var total: Long = 0
+    val com_total = MutableLiveData<String>()
+
+
+    private val com_clear_bascket = MutableLiveData<Boolean>()
+
+
+    val cloud_data = FirebaseDatabase.getInstance().reference
+
+    val tipo_productos: Array<String> = app_context.resources.getStringArray(R.array.tipo_productos)
+
 
 
 
     init {
         loadData()
 
-        Thread(Runnable {
-            while (true)
-                if (cond[0]&&cond[1]&&cond[2])
-                    break
-            loadregister()
-        }).start()
 
-
-
-        val docRef = db.collection("control").document(FirebaseAuth.getInstance().currentUser!!.uid)
-
-
-
-        docRef.addSnapshotListener { snapshot, e ->
-            if (e != null) {
-                return@addSnapshotListener
+        cloud_data.child("control/$author").addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
-            if (snapshot != null && snapshot.exists()) {
-                if(!(snapshot.data!!["estado"] as String).equals("0")) {
-                    val pref=app_context.getSharedPreferences("user", Context.MODE_PRIVATE)
-                    val editor=pref.edit()
-                    editor.putInt("numero",pref.getInt("numero",0)+1)
+
+            override fun onDataChange(p0: DataSnapshot) {
+                if (p0.child("estado").value!! != "0" && p0.child("estado").value!! != "1") {
+                    val pref = app_context.getSharedPreferences("user", Context.MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putInt("numero", pref.getInt("numero", 0) + 1)
                     editor.apply()
-                    docRef.set(hashMapOf("estado" to "0"))
-
+                    cloud_data.child("control/$author/estado").setValue("0")
                 }
-            } else {
             }
-        }
 
-
+        })
     }
 
 
-    fun updatedBascket(item: ItemProduct){
-
-        if(item.path.equals(app_context.getString(R.string.tag_food))) {
-            val index=bascket_food.indexOfFirst { it.nombre.equals(item.nombre) }
-            bascket_food.set(index, item)
-            bascket_food_com.value=bascket_food
-        }
-        else if(item.path.equals(app_context.getString(R.string.tag_medicinal))) {
-            val index=bascket_medicinal.indexOfFirst { it.nombre.equals(item.nombre) }
-            bascket_medicinal.set(index, item)
-            bascket_medicinal_com.value=bascket_medicinal
-        }
-        else {
-            bascket_fruver.set(bascket_fruver.indexOfFirst { it.nombre.equals(item.nombre) }, item)
-            bascket_fruver_com.value=bascket_fruver
-
-        }
-
-
-        total=0
-
-        for(it in bascket_fruver )
-            if(it.array.size==0)
-                total+= it.cantidad*(funciones.desformato(it.precio))
-            else
-                total+= it.cantidad*(funciones.desformato(it.precio)*item.porcentaje[item.tamano]).toLong()
-
-        for(it in bascket_medicinal )
-            if(it.array.size==0)
-                total+= it.cantidad*(funciones.desformato(it.precio))
-            else
-                total+= it.cantidad*(funciones.desformato(it.precio)*item.porcentaje[item.tamano]).toLong()
-
-        for(it in bascket_food )
-            if(it.array.size==0)
-                total+= it.cantidad*(funciones.desformato(it.precio))
-            else
-                total+= it.cantidad*(funciones.desformato(it.precio)*item.porcentaje[item.tamano]).toLong()
-
-
-
-
-
-        com_total.value=funciones.formato(total)
-        base.canastaUpdate(item.nombre,item.cantidad,item.tamano,item.madure,item.tipo,item.mensaje)
+    fun setTotal2(total:Long){
+        this.total=total
+        this.com_total.value=funciones.formato(total)
     }
 
+    fun updatedBascket(item: ItemProduct) {
 
-    fun set_total(tot:Long){
-        total=tot
-        com_total.value=funciones.formato(total)
+        if (item.path == app_context.getString(R.string.tag_food)) {
+            val index = bascket_food.indexOfFirst { it.nombre == item.nombre }
+            total -= (bascket_food[index].cantidad) * funciones.desformato(bascket_food[index].precio)
+            bascket_food[index] = item
+            bascket_food_com.value = bascket_food
+        } else if (item.path == app_context.getString(R.string.tag_medicinal)) {
+            val index = bascket_medicinal.indexOfFirst { it.nombre == item.nombre }
+            total -= (bascket_medicinal[index].cantidad) * funciones.desformato(bascket_medicinal[index].precio)
+            bascket_medicinal[index] = item
+            bascket_medicinal_com.value = bascket_medicinal
+        } else {
+            val index = bascket_fruver.indexOfFirst { it.nombre == item.nombre }
+            total -= (bascket_fruver[index].cantidad) * funciones.desformato(bascket_fruver[index].precio)
+            bascket_fruver[bascket_fruver.indexOfFirst { it.nombre == item.nombre }] = item
+            bascket_fruver_com.value = bascket_fruver
+        }
+
+
+        total = 0
+
+        for (it in bascket_fruver)
+            total += it.cantidad * (funciones.desformato(it.precio))
+        for (it in bascket_medicinal)
+            total += it.cantidad * (funciones.desformato(it.precio))
+        for (it in bascket_food)
+            total += it.cantidad * (funciones.desformato(it.precio))
+
+
+
+
+
+        com_total.value = funciones.formato(total)
+        base.canastaUpdate(
+            item.nombre,
+            item.cantidad,
+            item.ind1,
+            item.ind2,
+            "",
+            item.mensaje
+        )
     }
 
     // remove one n item from de bascket list and make it unlocked in the shoop
-    fun removeItemBascket(item: ItemProduct){
-        if(item.path.equals(app_context.getString(R.string.tag_food))){
-            bascket_food.removeIf { it.nombre.equals(item.nombre) }
-            (data_food.find {it.nombre.equals(item.nombre) })!!.alreadyBougtth=false
-            bascket_food_com.value=bascket_food
-            data_food_com.value=data_food
+    fun removeItemBascket(item: ItemProduct) {
+        setNumber(-1)
+        if (item.path == app_context.getString(R.string.tag_food)) {
+            bascket_food.removeIf { it.nombre == item.nombre }
+            (data_food.find { it.nombre == item.nombre })!!.alreadyBougtth = false
+            bascket_food_com.value = bascket_food
+            data_food_com.value = data_food
+            var aux=item.cantidad * (funciones.desformato(item.precio))
+            if(item.ind1!=-1) {
+                aux=(aux*item.porcentaje1[item.ind1]).toLong()
+                if(item.ind2!=-1)
+                    aux=(aux*item.porcentaje2[item.ind2]).toLong()
+            }
+            total -= aux
+        } else if (item.path == app_context.getString(R.string.tag_medicinal)) {
+            bascket_medicinal.removeIf { it.nombre == item.nombre }
+            (data_medicinal.find { it.nombre == item.nombre })!!.alreadyBougtth = false
+            bascket_medicinal_com.value = bascket_fruver
+            data_medicinal_com.value = data_fruver
+            var aux=item.cantidad * (funciones.desformato(item.precio))
+            if(item.ind1!=-1) {
+                aux=(aux*item.porcentaje1[item.ind1]).toLong()
+                if(item.ind2!=-1)
+                    aux=(aux*item.porcentaje2[item.ind2]).toLong()
+            }
+            total -= aux
+        } else {
+            bascket_fruver.removeIf { it.nombre == item.nombre }
+            (data_fruver.find { it.nombre == item.nombre })!!.alreadyBougtth = false
+            bascket_fruver_com.value = bascket_fruver
+            data_fruver_com.value = data_fruver
+            var aux=item.cantidad * (funciones.desformato(item.precio))
+            if(item.ind1!=-1) {
+                aux=(aux*item.porcentaje1[item.ind1]).toLong()
+                if(item.ind2!=-1)
+                    aux=(aux*item.porcentaje2[item.ind2]).toLong()
+            }
+            total -= aux
         }
-        else if(item.path.equals(app_context.getString(R.string.tag_medicinal))){
-            bascket_medicinal.removeIf { it.nombre.equals(item.nombre) }
-            (data_medicinal.find {it.nombre.equals(item.nombre) })!!.alreadyBougtth=false
-            bascket_medicinal_com.value=bascket_fruver
-            data_medicinal_com.value=data_fruver
-
-        }
-        else{
-            bascket_fruver.removeIf { it.nombre.equals(item.nombre) }
-            (data_fruver.find {it.nombre.equals(item.nombre) })!!.alreadyBougtth=false
-            bascket_fruver_com.value=bascket_fruver
-            data_fruver_com.value=data_fruver
-        }
-        if(item.array.size==0)
-            total-= item.cantidad*funciones.desformato(item.precio)
-        else
-            total-= item.cantidad*(funciones.desformato(item.precio)*item.porcentaje[item.madure]).toLong()
-
-        com_total.value=funciones.formato(total)
+        com_total.value = funciones.formato(total)
         base.canastaDelete(item.nombre)
     }
 
+    private fun setNumber(num:Int){
+        item_number+=num
+        item_number_com.value=item_number
+    }
+
     // add item to its respective bascket and save it into the local database
-    fun addItemBascket(item:ItemProduct){
-        if(item.path.equals(app_context.getString(R.string.tag_food))){
-            val temp=data_food.find { it.nombre.equals(item.nombre)}
-            temp!!.alreadyBougtth=true
-            bascket_food.add(temp)
-            bascket_food.sortBy { it.nombre }
-            bascket_food_com.value=bascket_food
-            data_food_com.value=data_food
-        }
+    fun addItemBascket(item: ItemProduct) {
+
+        setNumber(1)
+        val all_data= arrayOf(data_fruver,data_food,data_medicinal)
+        val all_bascket= arrayOf(bascket_fruver,bascket_food,bascket_medicinal)
+        val all_data_com= arrayOf(data_fruver_com,data_food_com,data_medicinal_com)
+        val all_bascket_com= arrayOf(bascket_fruver_com,bascket_food_com,bascket_medicinal_com)
+        var ind=0
+        if(item.path == tipo_productos[1])
+            ind=1
+        else if(item.path == tipo_productos[2])
+            ind=2
+
+        val temp = all_data[ind].find { it.nombre == item.nombre }
+        temp!!.alreadyBougtth = true
+        all_bascket[ind].add(temp)
+        all_bascket[ind].sortBy { it.nombre }
+        all_bascket_com[ind].value =all_bascket[ind]
+        all_data_com[ind].value = all_data[ind]
 
 
-        else if(item.path.equals(app_context.getString(R.string.tag_medicinal))){
-            val temp=data_medicinal.find { it.nombre.equals(item.nombre)}
-            temp!!.alreadyBougtth=true
-            bascket_medicinal.add(temp)
-            bascket_medicinal.sortBy { it.nombre }
-            bascket_medicinal_com.value=bascket_medicinal
-            data_medicinal_com.value=data_medicinal
-
-        }
-
-        else{
-            val temp=data_fruver.find { it.nombre.equals(item.nombre)}
-            temp!!.alreadyBougtth=true
-            bascket_fruver.add(temp)
-            bascket_fruver.sortBy { it.nombre }
-            bascket_fruver_com.value=bascket_fruver
-            data_fruver_com.value=data_fruver
-        }
-
-
-        base.canastaAdd(item.nombre,item.cantidad,item.tamano,item.madure,item.tipo,item.mensaje,item.path)
-
+        total += funciones.desformato(item.precio) * item.cantidad
+        com_total.value = funciones.formato(total)
+        base.canastaAdd(
+            item.nombre,
+            item.cantidad,
+            item.ind1,
+            item.ind2,
+            "",
+            item.mensaje,
+            item.path
+        )
 
 
     }
 
     // delete de data from bascket and unlock the data
-    fun deleteAllBascket(){
+    fun deleteAllBascket() {
+        setNumber(-item_number)
+
         base.canastaDeleteAll()
-        total=0
-        com_total.value=functiones.formato(total)
+        total = 0
+        com_total.value = functiones.formato(total)
         bascket_medicinal.clear()
         bascket_fruver.clear()
         bascket_food.clear()
 
-        com_clear_bascket.value=true
+        com_clear_bascket.value = true
 
         data_fruver.forEach {
-            it.alreadyBougtth=false
-            it.cantidad=1
+            it.alreadyBougtth = false
+            it.cantidad = 1
+            base.setCaracteristicas(it.nombre,it.ind1,it.ind2)
         }
 
         data_food.forEach {
-            it.alreadyBougtth=false
-            it.cantidad=1
+            it.alreadyBougtth = false
+            it.cantidad = 1
+            base.setCaracteristicas(it.nombre,it.ind1,it.ind2)
         }
 
         data_medicinal.forEach {
-            it.alreadyBougtth=false
-            it.cantidad=1
+            it.alreadyBougtth = false
+            it.cantidad = 1
+            base.setCaracteristicas(it.nombre,it.ind1,it.ind2)
         }
 
-        data_fruver_com.value=data_fruver
-        data_food_com.value=data_food
-        data_medicinal_com.value=data_medicinal
+        data_fruver_com.value = data_fruver
+        data_food_com.value = data_food
+        data_medicinal_com.value = data_medicinal
 
-        bascket_food_com.value=bascket_food
-        bascket_medicinal_com.value=bascket_medicinal
-        bascket_fruver_com.value=bascket_fruver
+        bascket_food_com.value = bascket_food
+        bascket_medicinal_com.value = bascket_medicinal
+        bascket_fruver_com.value = bascket_fruver
 
-        com_total.value=funciones.formato(0)
+        com_total.value = funciones.formato(0)
     }
 
 
-     fun saveOrder(){
+    fun saveOrder() {
 
 
-         val preferences = app_context!!.getSharedPreferences("user", Context.MODE_PRIVATE)
-         val c = Calendar.getInstance()
-         val date = c.get(Calendar.YEAR).toString() + "/" + c.get(Calendar.MONTH).toString() + "/" + c.get(Calendar.DAY_OF_MONTH).toString()
-         val number=preferences.getInt("numero",0)
-
-
-
-         base.pedidosDelete(number)
-         val order=ItemOrder(total,date,number, ArrayList(),ArrayList(),ArrayList())
-
-
-         bascket_fruver.forEach {
-             base.pedidosAdd(it.nombre,it.cantidad,it.tamano,it.madure,it.tipo,it.mensaje,it.path,date,number)
-             order.fruver.add(it.copy())
-         }
-         bascket_food.forEach {
-             base.pedidosAdd(it.nombre,it.cantidad,it.tamano,it.madure,it.tipo,it.mensaje,it.path,date,number)
-             order.food.add(it.copy())
-         }
-         bascket_medicinal.forEach {
-             base.pedidosAdd(it.nombre,it.cantidad,it.tamano,it.madure,it.tipo,it.mensaje,it.path,date,number)
-             order.medicinal.add(it.copy())
-         }
+        val preferences = app_context!!.getSharedPreferences("user", Context.MODE_PRIVATE)
+        val c = Calendar.getInstance()
+        val date =
+            c.get(Calendar.YEAR).toString() + "/" + c.get(Calendar.MONTH).toString() + "/" + c.get(
+                Calendar.DAY_OF_MONTH
+            ).toString()
+        val number = preferences.getInt("numero", 0)
 
 
 
+        base.pedidosDelete(number)
+        val order = ItemOrder(total, date, number, ArrayList(), ArrayList(), ArrayList())
 
-         deleteAllBascket()
-         data_pedidos.removeIf { it.numero==order.numero }
-         data_pedidos.add(order)
-         com_data_pedidos.value=data_pedidos
-
-
-         db.collection("pedidos/${author.currentUser!!.uid}/food")
-             .get()
-             .addOnCompleteListener { task ->
-                 if (task.isSuccessful && task.result!!.size()!=0)
-                     for (producto in task.result!!)
-                         producto.reference.delete()
-
-                 for (item in order.fruver) {
-                     val product = hashMapOf(
-                         "name" to item.nombreMostrar,
-                         "price" to item.precio,
-                         "amount" to item.cantidad,
-                         "mature" to item.array2[item.madure],
-                         "size" to item.array[item.tamano],
-                         "message" to item.mensaje,
-                         "tipo" to item.tipoEnviar
-                     )
-
-                     db.collection("pedidos").document(author.currentUser!!.uid)
-                         .collection("fruver").document(item.nombre).set(product)
-                 }
-
+    for(i in 0 until 3)
+        all_basckets[i].forEach {
+            base.pedidosAdd(
+                it.nombre,
+                it.cantidad,
+                it.ind1,
+                it.ind2,
+                "",
+                it.mensaje,
+                it.path,
+                date,
+                number
+            )
+            if(i==0)
+                order.fruver.add(it.copy())
+            else if(i==1)
+                order.food.add(it.copy())
+            else if(i==2)
+                order.medicinal.add(it.copy())
+        }
+        deleteAllBascket()
+        data_pedidos.removeIf { it.numero == order.numero }
+        data_pedidos.add(order)
+        com_data_pedidos.value = data_pedidos
 
 
+        cloud_data.child("pedidos/$author+/pedido").removeValue()
+        for (i in 0 until 2) {
+            val temp: ArrayList<ItemProduct>
+            temp = if (i == 0)
+                order.fruver
+            else if (i == 1)
+                order.food
+            else
+                order.medicinal
 
-             }
+            for (item in temp) {
+                val product = hashMapOf(
+                    "nombre" to item.nombreMostrar,
+                    "precio" to funciones.desformato(item.precio),
+                    "cantidad" to item.cantidad,
+                    "unidad" to item.unidad,
+                    "mensaje" to item.mensaje
+                )
 
+                if (item.ind1 != -1) {
+                    product["tipo1"] = item.array1[item.ind1]
+                    var aux = (funciones.desformato(item.precio) * item.porcentaje1[item.ind1])
+                    if (item.ind2 != -1) {
+                        aux *= item.porcentaje2[item.ind2]
+                        product["tipo2"] = item.porcentaje2[item.ind2]
+                    }
+                    product["precio"] = aux
+                }
 
-         db.collection("pedidos/${author.currentUser!!.uid}/fruver")
-             .get()
-             .addOnCompleteListener { task ->
-                 if (task.isSuccessful && task.result!!.size()!=0)
-                     for (producto in task.result!!)
-                         producto.reference.delete()
-
-                 for (item in order.food) {
-                     val product = hashMapOf(
-                         "name" to item.nombreMostrar,
-                         "price" to item.precio,
-                         "amount" to item.cantidad,
-                         "mature" to item.array2[item.madure],
-                         "size" to item.array[item.tamano],
-                         "message" to item.mensaje,
-                         "tipo" to item.tipoEnviar
-                     )
-
-                     db.collection("pedidos").document(author.currentUser!!.uid).collection("food").document(item.nombre).set(product)
-
-
-                 }
-             }
-
-         db.collection("pedidos/${author.currentUser!!.uid}/medicinal")
-             .get()
-             .addOnCompleteListener { task ->
-                 if (task.isSuccessful && task.result!!.size()!=0)
-                     for (producto in task.result!!)
-                         producto.reference.delete()
-
-                 for (item in order.medicinal) {
-                     val product = hashMapOf(
-                         "name" to item.nombreMostrar,
-                         "price" to item.precio,
-                         "amount" to item.cantidad,
-                         "mature" to item.array2[item.madure],
-                         "size" to item.array[item.tamano],
-                         "message" to item.mensaje,
-                         "tipo" to item.tipoEnviar
-                     )
-                     db.collection("pedidos").document(author.currentUser!!.uid).collection("medicinal").document(item.nombre).set(product)
-
-                 }
+                cloud_data.child("pedidos/${author}/pedido/"+tipo_productos[i]).child(item.nombre)
+                    .setValue(product)
+            }
 
 
-             }
-
-         db.collection("pedidos/${author.currentUser!!.uid}/user data").document("data").delete()
-
-         db.collection("pedidos").document(author.currentUser!!.uid).delete()
+        }
 
 
 
-         val user = hashMapOf(
-             "date" to date,
-             "name" to preferences.getString("name", ""),
-             "number" to preferences.getString(
-                 "number1",
-                 ""
-             ) + "/" + preferences.getString("number2", ""),
-             "city" to preferences.getString("city", ""),
-             "aldres" to preferences.getString("aldres", "")
-         )
 
 
-         db.collection("pedidos").document(author.currentUser!!.uid).collection("user data").document("data").set(user)
+        val user = hashMapOf(
+            "fecha" to date,
+            "nombre" to preferences.getString("name", ""),
+            "numero" to preferences.getString("number1", ""),
+            "direccion" to preferences.getString(
+                "city",
+                ""
+            ) + " - " + preferences.getString("aldres", "")
+        )
 
-
+        cloud_data.child("pedidos/$author/informacion").setValue(user)
+        cloud_data.child("control/$author/estado").setValue("1")
 
 
     }
 
     private fun loadregister() {
 
-
-
-        val cursor=base.queryAllPedidos()
+        val cursor = base.queryAllPedidos()
         cursor.moveToFirst()
-        if(cursor.count>0) {
-            var order = ItemOrder(0, cursor.getString(8), cursor.getInt(9), ArrayList(), ArrayList(), ArrayList())
+        if (cursor.count > 0) {
+            var order = ItemOrder(
+                0,
+                cursor.getString(8),
+                cursor.getInt(9),
+                ArrayList(),
+                ArrayList(),
+                ArrayList()
+            )
             for (i in 0 until cursor.count) {
 
                 if (cursor.getInt(9) != order.numero) {
                     data_pedidos.add(order)
-                    order = ItemOrder(0, cursor.getString(8), cursor.getInt(9), ArrayList(), ArrayList(), ArrayList())
+                    order = ItemOrder(
+                        0,
+                        cursor.getString(8),
+                        cursor.getInt(9),
+                        ArrayList(),
+                        ArrayList(),
+                        ArrayList()
+                    )
                 }
 
-                if (cursor.getString(7).equals(app_context.getString(R.string.tag_food))) {
-                    val temp = data_food.find { it.nombre.equals(cursor.getString(1)) }!!
-                    temp.cantidad = cursor.getInt(2)
-                    temp.tamano = cursor.getInt(3)
-                    temp.madure = cursor.getInt(4)
-                    temp.tipo = cursor.getString(5)
-                    temp.mensaje = cursor.getString(6)
-                    order.food.add(temp)
-                }
+                val all_data= arrayListOf(data_fruver,data_food,data_medicinal)
 
-                else if (cursor.getString(7).equals(app_context.getString(R.string.tag_medicinal))) {
-                    val temp = data_medicinal.find { it.nombre.equals(cursor.getString(1)) }!!
-                    temp.cantidad = cursor.getInt(2)
-                    temp.tamano = cursor.getInt(3)
-                    temp.madure = cursor.getInt(4)
-                    temp.tipo = cursor.getString(5)
-                    temp.mensaje = cursor.getString(6)
-                    order.medicinal.add(temp)
-                }
 
-                else {
-                    val temp = data_fruver.find { it.nombre.equals(cursor.getString(1)) }!!
+                for(k in 0 until 3)
+                if (cursor.getString(7) == tipo_productos[k]) {
+                    val temp = all_data[k].find { it.nombre == cursor.getString(1) }!!.copy()
                     temp.cantidad = cursor.getInt(2)
-                    temp.tamano = cursor.getInt(3)
-                    temp.madure = cursor.getInt(4)
-                    temp.tipo = cursor.getString(5)
+                    temp.ind1 = cursor.getInt(3)
+                    temp.ind2 = cursor.getInt(4)
                     temp.mensaje = cursor.getString(6)
+                   if(k==0)
                     order.fruver.add(temp)
+                   else if(k==1)
+                       order.food.add(temp)
+                   else if(k==2)
+                       order.medicinal.add(temp)
+
+
                 }
                 cursor.moveToNext()
             }
             data_pedidos.add(order)
-            com_data_pedidos.postValue ( data_pedidos)
+            com_data_pedidos.postValue(data_pedidos)
         }
     }
 
     //||||||||||||||||||||||||||||||||||||||FRAGMENT REGISTER ||||||||||||||||||||||||||||||||||||||
 
-     fun setOrder(itemOrder: ItemOrder){
-         base.canastaDeleteAll()
+    fun setOrder(itemOrder: ItemOrder) {
+        base.canastaDeleteAll()
 
-         for (item in bascket_fruver)
-            data_fruver.find { item.nombre.equals(it.nombre)}!!.alreadyBougtth=false
+        for (item in bascket_fruver)
+            data_fruver.find { item.nombre == it.nombre }!!.alreadyBougtth = false
 
-         for (item in bascket_food)
-             data_food.find { item.nombre.equals(it.nombre)}!!.alreadyBougtth=false
+        for (item in bascket_food)
+            data_food.find { item.nombre == it.nombre }!!.alreadyBougtth = false
 
-         for (item in bascket_medicinal)
-             data_medicinal.find { item.nombre.equals(it.nombre)}!!.alreadyBougtth=false
+        for (item in bascket_medicinal)
+            data_medicinal.find { item.nombre == it.nombre }!!.alreadyBougtth = false
 
 
         bascket_fruver.clear()
@@ -465,22 +445,22 @@ class Comunication:ViewModel() {
         bascket_medicinal.clear()
 
 
-         total=0
+        total = 0
 
-         for (item in itemOrder.fruver) {
-               item.precio=data_fruver.find { it.nombre.equals(item.nombre) }!!.precio
-               addItemBascket(item)
-         }
+        for (item in itemOrder.fruver) {
+            item.precio = data_fruver.find { it.nombre == item.nombre }!!.precio
+            addItemBascket(item)
+        }
 
-         for (item in itemOrder.food) {
-             item.precio=data_food.find { it.nombre.equals(item.nombre) }!!.precio
-             addItemBascket(item)
-         }
+        for (item in itemOrder.food) {
+            item.precio = data_food.find { it.nombre == item.nombre }!!.precio
+            addItemBascket(item)
+        }
 
-         for (item in itemOrder.medicinal) {
-             item.precio=data_medicinal.find { it.nombre.equals(item.nombre) }!!.precio
-             addItemBascket(item)
-         }
+        for (item in itemOrder.medicinal) {
+            item.precio = data_medicinal.find { it.nombre == item.nombre }!!.precio
+            addItemBascket(item)
+        }
 
 
     }
@@ -489,240 +469,145 @@ class Comunication:ViewModel() {
     //||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
-
-
     // Load the start data into the variables
-    private fun loadData(){
-        db.collection("products/"+app_context.getString(R.string.tag_fruver)+"/items")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
+    private fun loadData() {
 
-                    for (producto in task.result!!) {
-                        Log.wtf("errorres",producto["nombre"] as String)
-
-                        data_fruver.add(
-                            ItemProduct(
-                                producto["nombre"] as String,
-                                producto["nombreMostrar"] as String,
-                                funciones.formato(producto["precio"] as Long),
-                                1,
-                                false,
-                                producto["unidad"] as String,
-                                "",
-                                app_context.getString(R.string.tag_fruver),
-                                1, 1,
-                                "",
-                                "",
-                                "",
-                                "",
-                                producto["ventana"] as Long,
-                                ArrayList(),
-                                ArrayList(),
-                          1,
-                                "",
-                                ArrayList()
-                            ) )
-
-                        if (producto["array"] !=null){
-                            data_food.last().array.addAll(producto["array"]as ArrayList<String>)
-                            data_food.last().porcentaje.addAll(producto["porcentaje"]as ArrayList<Double>)
-                            data_food.last().tipo= producto["tipo"] as String
-                        }
-
-                        if(producto["tipo2"]!=null){
-                            data_food.last().tipo2=producto["tipo2"] as String
-                            data_food.last().array2.addAll(producto["array2"]as ArrayList<String>)
-                        }
-                    }
-                    data_fruver_com.value=data_fruver
-                    reloadBadcketFruver()
-                    cond[0]=true
-
-                }
-
+        cloud_data.child("productos").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
+            override fun onDataChange(p0: DataSnapshot) {
+                for (tipo in tipo_productos) {
+                    val temp: ArrayList<ItemProduct>
+                    temp = if (tipo == tipo_productos[0])
+                        data_fruver
+                    else if (tipo == tipo_productos[1])
+                        data_food
+                    else
+                        data_medicinal
 
-        db.collection("products/"+app_context.getString(R.string.tag_food)+"/items")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (producto in task.result!!) {
+                    for (item in p0.child(tipo).children) {
+                        Log.wtf("mateo",      item.child("nombre").value as String)
 
-                        data_food.add(
+                        temp.add(
                             ItemProduct(
-                                producto["nombre"] as String,
-                                producto["nombreMostrar"] as String,
-                                funciones.formato(producto["precio"] as Long),
+                                item.child("nombre").value as String,
+                                item.child( "nombreMostrar").value as String,
+                                funciones.formato(item.child("precio").value as Long),
                                 1,
                                 false,
-                                producto["unidad"] as String,
+                                item.child("unidad").value as String,
+                                item.child("descripcion").value as String,
+                                tipo,
                                 "",
-                                app_context.getString(R.string.tag_food),
-                                1, 1,
                                 "",
-                                "","",    "",
-                                producto["ventana"] as Long,
+                                item.child("ventana").value as Long,
+                                -1,
+                                -1,
+                                "",
+                                "",
                                 ArrayList(),
                                 ArrayList(),
-                                1,
-                                "",
+                                ArrayList(),
                                 ArrayList()
                             )
                         )
 
-
-                        if (producto["array"] !=null){
-                          data_food.last().array.addAll(producto["array"]as ArrayList<String>)
-                          data_food.last().porcentaje.addAll(producto["porcentaje"]as ArrayList<Double>)
-                          data_food.last().tipo= producto["tipo"] as String
+                        if (item.child("array1").exists()) {
+                            temp.last()
+                                .array1.addAll(item.child("array1").value as ArrayList<String>)
+                            temp.last()
+                                .porcentaje1.addAll(item.child("porcentaje1").value as ArrayList<Double>)
+                            temp.last().ind1 = 0
+                            temp.last().tipo1= item.child("tipo1").value as String
                         }
-
-                        if(producto["tipo2"]!=null){
-                            data_food.last().tipo2=producto["tipo2"] as String
-                            data_food.last().array2.addAll(producto["array2"]as ArrayList<String>)
+                        if (item.child("array2").exists()) {
+                            temp.last()
+                                .array2.addAll(item.child("array2").value as ArrayList<String>)
+                            temp.last()
+                                .porcentaje2.addAll(item.child( "porcentaje2").value as ArrayList<Double>)
+                            temp.last().ind2 = 0
+                            temp.last().tipo2= item.child("tipo2").value as String
                         }
-
                     }
-                    data_food_com.value=data_food
-                    reloadBadcketFood()
-                    cond[1]=true
                 }
 
+                data_fruver_com.value=data_fruver
+                data_food_com.value=data_food
+                data_medicinal_com.value=data_medicinal
+                loadCharacteristics()
+                reloadBascket()
+                loadregister()
             }
 
-
-        db.collection("products/"+app_context.getString(R.string.tag_medicinal)+"/items")
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (producto in task.result!!) {
-                        data_medicinal.add(
-                            ItemProduct(
-                                producto["nombre"] as String,
-                                producto["nombreMostrar"] as String,
-                                funciones.formato(producto["precio"] as Long),
-                                1,
-                                false,
-                                producto["unidad"] as String,
-                                "",
-                                app_context.getString(R.string.tag_medicinal),
-                                1, 1,
-                                "",
-                                "","",    "",
-                                producto["ventana"] as Long,
-                                ArrayList(),
-                                ArrayList(),
-                                1,
-                                "",
-                                ArrayList()
-                            )
-                        )
-                        if (producto["arrat"] !=null){
-                            data_food.last().array.addAll(producto["array"]as ArrayList<String>)
-                            data_food.last().porcentaje.addAll(producto["porcentaje"]as ArrayList<Double>)
-                            data_food.last().tipo= producto["tipo"] as String
-                        }
-
-                        if(producto["tipo2"]!=null){
-                            data_food.last().tipo2=producto["tipo2"] as String
-                            data_food.last().array2.addAll(producto["array2"]as ArrayList<String>)
-                        }
-
-                    }
-                    data_medicinal_com.value=data_medicinal
-                    reloadBadcketMedicinal()
-                    cond[2]=true
-
-                }
-            }
-
+        })
 
     }
 
     // reload the last saved items in the basckert**************************************************
 
 
-    private fun reloadBadcketFruver(){
-        val cursor = base.queryAllCanasta(app_context.getString(R.string.tag_fruver))
-        cursor.moveToFirst()
-        for (i in 0 until cursor.count) {
-            Log.wtf("bugger",(cursor.getString(1)) )
-            val item = data_fruver.find { it.nombre.equals(cursor.getString(1)) }!!
-            item.cantidad = cursor.getInt(2)
-            item.tamano = cursor.getInt(3)
-            item.madure = cursor.getInt(4)
-            item.tipo = cursor.getString(5)
-            item.mensaje = cursor.getString(6)
-            item.alreadyBougtth = true
-            bascket_fruver.add(item)
-            if(item.array.size==0)
-                total+= item.cantidad*funciones.desformato(item.precio)
-            else
-                total+= item.cantidad*(funciones.desformato(item.precio)*item.porcentaje[item.tamano]).toLong()
-            cursor.moveToNext()
+    private fun loadCharacteristics(){
+        for(cate in arrayOf(data_fruver,data_food,data_medicinal))
+          for(item in cate){
+              val c=base.getCaracteristicas(item.nombre)
+              c.moveToFirst()
+              if(c.count==0)
+                  continue
+              if(item.ind1!=-1 )
+                  item.ind1=c.getInt(2)
+              if(item.ind2!=-1 )
+                  item.ind2=c.getInt(3)
+          }
+ }
+
+
+    private fun reloadBascket() {
+
+        setNumber(-item_number)
+        val all_data= arrayOf(data_fruver,data_food,data_medicinal)
+        val all_bascket= arrayOf(bascket_fruver,bascket_food,bascket_medicinal)
+        for (j in 0 until 3) {
+            val cursor = base.queryAllCanasta(tipo_productos[j])
+            cursor.moveToFirst()
+            for (i in 0 until cursor.count) {
+                setNumber(1)
+                val item = all_data[j].find { it.nombre == cursor.getString(1) }!!
+                item.cantidad = cursor.getInt(2)
+                item.ind1 = cursor.getInt(3)
+                item.ind2 = cursor.getInt(4)
+                item.mensaje = cursor.getString(6)
+                item.alreadyBougtth = true
+                all_bascket[j].add(item)
+
+
+                var aux= funciones.desformato(item.precio) * item.cantidad
+                if(item.ind1!=-1)
+                    aux=(aux*item.porcentaje1[item.ind1]).toLong()
+                if(item.ind2!=-1)
+                    aux=(aux*item.porcentaje2[item.ind2]).toLong()
+                total += aux
+                cursor.moveToNext()
+            }
+
+            cursor.close()
         }
 
-        com_total.value=funciones.formato(total)
+        com_total.value = funciones.formato(total)
+
         bascket_fruver_com.value = bascket_fruver
         data_fruver_com.value = data_fruver
-        cursor.close()
-    }
 
-
-    private fun reloadBadcketFood(){
-        val cursor = base.queryAllCanasta(app_context.getString(R.string.tag_food))
-        cursor.moveToFirst()
-        for (i in 0 until cursor.count) {
-            Log.e("erro raro",cursor.getString(1)+" "+"  "+cursor.getString(7)+"     ")
-            val item = data_food.find { it.nombre.equals(cursor.getString(1)) }!!
-            item.cantidad = cursor.getInt(2)
-            item.tamano = cursor.getInt(3)
-            item.madure = cursor.getInt(4)
-            item.tipo = cursor.getString(5)
-            item.mensaje = cursor.getString(6)
-            item.alreadyBougtth = true
-            bascket_food.add(item)
-            cursor.moveToNext()
-            if(item.array.size==0)
-                total+= item.cantidad*funciones.desformato(item.precio)
-            else
-                total+= item.cantidad*(funciones.desformato(item.precio)*item.porcentaje[item.tamano]).toLong()
-        }
-        com_total.value=funciones.formato(total)
         bascket_food_com.value = bascket_food
         data_food_com.value = data_food
-        cursor.close()
-    }
 
-    private fun reloadBadcketMedicinal(){
-        val cursor = base.queryAllCanasta(app_context.getString(R.string.tag_medicinal))
-        cursor.moveToFirst()
-        for (i in 0 until cursor.count) {
-            Log.e("erro raro",cursor.getString(1)+" "+"  "+cursor.getString(7)+"     ")
-            val item = data_food.find { it.nombre.equals(cursor.getString(1)) }!!
-            item.cantidad = cursor.getInt(2)
-            item.tamano = cursor.getInt(3)
-            item.madure = cursor.getInt(4)
-            item.tipo = cursor.getString(5)
-            item.mensaje = cursor.getString(6)
-            item.alreadyBougtth = true
-            bascket_medicinal.add(item)
-            if(item.array.size==0)
-                total+= item.cantidad*funciones.desformato(item.precio)
-            else
-                total+= item.cantidad*(funciones.desformato(item.precio)*item.porcentaje[item.tamano]).toLong()
-            cursor.moveToNext()
-
-        }
-        com_total.value=funciones.formato(total)
         bascket_medicinal_com.value = bascket_medicinal
         data_medicinal_com.value = data_medicinal
-        cursor.close()
     }
-
-
     //**********************************************************************************************
+
+
+
 
 }

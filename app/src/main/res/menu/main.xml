@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:keep="@menu/main">
 
     <item
-        android:id="@+id/ic_group"
         android:icon="@drawable/basket_design"
         android:title="@string/titulo_canasta"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_settings"
         android:title="@string/action_settings"
         app:showAsAction="never" />
 </menu>

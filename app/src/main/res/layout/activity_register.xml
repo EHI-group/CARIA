@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dialog_rounded"
@@ -37,7 +36,8 @@
         android:textColorHint="@color/selected_medicinal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aregister_est_register" />
+        app:layout_constraintTop_toBottomOf="@+id/aregister_est_register"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/aregister_et_numero"
@@ -54,7 +54,8 @@
         android:textColorHint="@color/selected_medicinal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aregister_et_name" />
+        app:layout_constraintTop_toBottomOf="@+id/aregister_et_name"
+        android:importantForAutofill="no" />
 
     <Spinner
         android:id="@+id/aregister_sp_spinner"
@@ -96,7 +97,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aregister_sp_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/aregister_sp_spinner"
+        android:importantForAutofill="no" />
 
     <TextView
         android:id="@+id/textView63"

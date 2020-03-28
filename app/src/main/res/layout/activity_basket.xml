@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -36,7 +35,6 @@
         app:layout_constraintTop_toTopOf="@+id/abask_est_total" />
 
     <ScrollView
-        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
@@ -51,7 +49,6 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/abask_est_fruver"
                 style="@style/normal_subtitle_dark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -65,7 +62,6 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/abask_est_food"
                 style="@style/normal_subtitle_dark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -80,7 +76,6 @@
             </androidx.recyclerview.widget.RecyclerView>
 
             <TextView
-                android:id="@+id/abask_est_medicine"
                 style="@style/normal_subtitle_dark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -8,17 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+    <style name="AppTheme.NoActionBar"></style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" tools:keep="@style/AppTheme_AppBarOverlay" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" tools:keep="@style/AppTheme_PopupOverlay" />
 
 
-    <style name="normal_normal_cleargreen_big" arent="@android:style/TextAppearance">
+    <style name="normal_normal_cleargreen_big" arent="@android:style/TextAppearance" tools:keep="@style/normal_normal_cleargreen_big">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:layout_width">wrap_content</item>
@@ -66,7 +63,7 @@
 
 
 
-    <style name="normal_normal_big" parent="@android:style/TextAppearance">
+    <style name="normal_normal_big" parent="@android:style/TextAppearance" tools:keep="@style/normal_normal_big">
         <item name="android:textColor">@color/texo_general</item>
         <item name="android:textSize">18sp</item>
         <item name="android:layout_width">wrap_content</item>
@@ -94,7 +91,7 @@
 
 
 
-    <style name="normal_normal_small" parent="@android:style/TextAppearance">
+    <style name="normal_normal_small" parent="@android:style/TextAppearance" tools:keep="@style/normal_normal_small">
         <item name="android:textColor">@color/texo_general</item>
         <item name="android:textSize">14sp</item>
         <item name="android:layout_width">wrap_content</item>
@@ -102,7 +99,7 @@
     </style>
 
 
-    <style name="normal_cleargreen_small" parent="@android:style/TextAppearance">
+    <style name="normal_cleargreen_small" parent="@android:style/TextAppearance" tools:keep="@style/normal_cleargreen_small">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:layout_width">wrap_content</item>
@@ -186,7 +183,7 @@
         <item name="android:translationZ">2dp</item>
         <item name="android:elevation">2dp</item>
         <item name="android:textAllCaps">false</item>
-        <item name="android:background">@color/color_purple</item>
+        <item name="android:background">@drawable/redondo2</item>
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
@@ -205,6 +202,17 @@
     <style name="normal_line" parent="@android:style/TextAppearance">
         <item name="android:layout_height">2dp</item>
         <item name="android:background">@color/texo_general</item>
+    </style>
+
+    <style name="normal_text" parent="@android:style/TextAppearance" tools:keep="@style/normal_text">
+        <item name="android:layout_height">2dp</item>
+        <item name="android:background">@color/texo_general</item>
+    </style>
+
+    <style name="normal_estandar_text" parent="@android:style/TextAppearance">
+        <item name="fontFamily">@font/nunito_light</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 

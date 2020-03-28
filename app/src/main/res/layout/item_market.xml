@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="2dp"
@@ -106,6 +105,18 @@
             app:layout_constraintStart_toEndOf="@+id/imarket_tvest_cantidad"
             app:layout_constraintTop_toTopOf="@+id/imarket_tvest_cantidad" />
 
+        <ImageButton
+            android:id="@+id/imarket_ib_elimine"
+            android:background="@null"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/button_minus" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

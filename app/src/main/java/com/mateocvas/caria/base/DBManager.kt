@@ -8,11 +8,10 @@ import android.util.Log
 class DBManager (context: Context){
 
     private val base: SQLiteDatabase
-    private val helper:DBHelper
+    private val helper:DBHelper = DBHelper(context)
 
     init{
-        helper = DBHelper(context)
-        base = helper.getWritableDatabase()
+        base = helper.writableDatabase
     }
 
 
@@ -22,6 +21,7 @@ class DBManager (context: Context){
 
     fun canastaAdd(nombre: String, cantidad: Int, tamano: Int,maduracion:Int,tipo:String,mensaje:String,clasificacion:String) {
         base.execSQL("INSERT OR IGNORE INTO $table1 ($c2,$c3,$c4,$c5,$c6,$c7,$c8) VALUES ('$nombre',$cantidad,$tamano,$maduracion,'$tipo','$mensaje','$clasificacion');")
+        Log.wtf("ronaldo","$nombre   $tamano   $maduracion")
     }
 
     fun canastaDeleteAll() {
@@ -39,43 +39,45 @@ class DBManager (context: Context){
     }
 
 
+    fun setCaracteristicas(nombre: String,ind1:Int,ind2:Int) {
+        if (getCaracteristicas(nombre).count==0)
+            base.execSQL("INSERT INTO $table3( $c2, $c4, $c5) VALUES('$nombre', $ind1, $ind2)")
+        else
+            base.execSQL("UPDATE $table3 SET $c4=$ind1, $c5=$ind2 WHERE $c2 ='$nombre';")
+    }
+
+    fun getCaracteristicas(nombre: String):Cursor {
+        return base.rawQuery("SELECT * FROM $table3 WHERE $c2 ='$nombre';", null)
+    }
 
 
     fun pedidosDelete(num: Int) {
         base.execSQL("DELETE FROM $table2 WHERE $c10 =$num;")
-
-
     }
 
     fun pedidosAdd(nombre: String, cantidad: Int, tamano: Int,maduracion:Int,tipo:String,mensaje:String,clasificacoion:String,fecha:String,num:Int) {
         val c=queryAllPedidos()
         base.execSQL("INSERT INTO $table2 ($c2,$c3,$c4,$c5,$c6,$c7,$c8,$c9,$c10) VALUES ('$nombre',$cantidad,$tamano,$maduracion,'$tipo','$mensaje','$clasificacoion','$fecha',$num)")
-        val f=queryAllPedidos()
-        val a=5
     }
 
     fun queryAllPedidos():Cursor {
         return base.rawQuery("SELECT * FROM $table2", null)
     }
 
-    fun pedidosUpdate(number:Int, nombre: String, cantidad: Int, tamano: Int,maduracion:Int,tipo:String,mensaje:String,clasificacion:String,fecha:String, num:Int) {
-        base.execSQL("DELETE FROM $table2 WHERE $c10 = $number;")
-        base.execSQL("INSERT OR IGNORE INTO $table2 ($c2,$c3,$c4,$c5,$c6,$c7,$c8,$c9,$c10) VALUES ('$nombre',$cantidad,$tamano,$maduracion,'$tipo','$mensaje','$clasificacion','$fecha',$num)")
-
-    }
 
     companion object {
-        private val table1 = "bascket"
-        private val table2 = "pedidos"
-        private val c2 = "nombre"
-        private val c3 = "cantidad"
-        private val c4 = "tamano"
-        private val c5 = "maduracion"
-        private val c6 = "tipo"
-        private val c7 = "mensaje"
-        private val c8 = "clasificacion"
-        private val c9 = "fecha"
-        private val c10="numero"
+        private const val table1 = "bascket"
+        private const val table2 = "pedidos"
+        private const val table3 = "caracteristicas"
+        private const val c2 = "nombre"
+        private const val c3 = "cantidad"
+        private const val c4 = "ind1"
+        private const val c5 = "ind2"
+        private const val c6 = "tipo"
+        private const val c7 = "mensaje"
+        private const val c8 = "clasificacion"
+        private const val c9 = "fecha"
+        private const val c10="numero"
     }
 
 

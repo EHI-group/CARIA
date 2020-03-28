@@ -8,7 +8,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import com.mateocvas.caria.R
 
-class AdapterSimpleItem(val arrayList: ArrayList<String>,val context: Context):BaseAdapter() {
+class AdapterSimpleItem(private val arrayList: ArrayList<String>, val context: Context):BaseAdapter() {
 
         override fun getItem(p0: Int): Any {
             return arrayList[p0]
@@ -22,11 +22,7 @@ class AdapterSimpleItem(val arrayList: ArrayList<String>,val context: Context):B
             return arrayList.size
         }
 
-    private val mInflator: LayoutInflater
-
-    init {
-        this.mInflator = LayoutInflater.from(context)
-    }
+    private val mInflator: LayoutInflater = LayoutInflater.from(context)
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
         val view: View?
@@ -44,11 +40,8 @@ class AdapterSimpleItem(val arrayList: ArrayList<String>,val context: Context):B
         return view
     }
     inner class ListRowHolder(row: View?) {
-         val label: TextView
+         val label: TextView = row?.findViewById(R.id.isimple_tv_city) as TextView
 
-        init {
-            this.label = row?.findViewById(R.id.isimple_tv_city) as TextView
-        }
     }
     }
 

@@ -19,10 +19,10 @@ class AdapterRecyclerOrder(val context: RegisterFragment, val items: ArrayList<I
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val slected_order= items.get(position)
+        val slected_order= items[position]
         holder.bind(slected_order)
         holder.view.setOnClickListener {
-            context.model.setItemOrder(slected_order)
+            context.setItemOrder(slected_order)
         }
     }
 
@@ -36,9 +36,9 @@ class AdapterRecyclerOrder(val context: RegisterFragment, val items: ArrayList<I
     }
 
     class ViewHolder(val view: View,val numero:Int) : RecyclerView.ViewHolder(view) {
-        val number = view.iorder_tv_number as TextView
-        val date = view.iorder_tv_date as TextView
-        val estado=view.iorder_tv_state as TextView
+        private val number = view.iorder_tv_number as TextView
+        private val date = view.iorder_tv_date as TextView
+        private val estado=view.iorder_tv_state as TextView
 
         fun bind(item: ItemOrder) {
             number.text = item.numero.toString()
@@ -47,7 +47,6 @@ class AdapterRecyclerOrder(val context: RegisterFragment, val items: ArrayList<I
                 estado.text =view.context.getString(R.string.estado_entregado)
             else
                 estado.text =view.context.getString(R.string.estado_espera)
-
         }
     }
 }

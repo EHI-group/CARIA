@@ -12,7 +12,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    tools:keep="@layout/ventana_carrito_fix">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,7 +24,6 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/activity_fruta_seleccionada_imagebutt_mas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:context=".Activity_Fruta_Seleccionada">
@@ -142,9 +141,7 @@
                 style="@style/normal_normal_cleargreen"
                 android:layout_width="0dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
                 android:background="@color/color_gray"
                 android:fontFamily="@font/nunito_light"
                 android:hint="@string/ventana_fruta_modificar_edittext"
@@ -154,7 +151,7 @@
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline11"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
                 app:layout_constraintTop_toBottomOf="@+id/aprosel_bt_ingresar" />
 
             <SeekBar
@@ -209,7 +206,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/aprosel_tv_slider1" />
 
             <TextView
-                android:id="@+id/textView25"
+                android:id="@+id/aprosel_est_precioxunidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -229,8 +226,8 @@
                 android:text="@string/Precio_unidad"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="@+id/textView25"
-                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+                app:layout_constraintStart_toStartOf="@+id/aprosel_est_precioxunidad"
+                app:layout_constraintTop_toBottomOf="@+id/aprosel_est_precioxunidad" />
 
             <TextView
                 android:id="@+id/textView43"
@@ -247,7 +244,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
             <TextView
-                android:id="@+id/textView40"
+                android:id="@+id/aprosel_tv_precioxunidad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -255,12 +252,11 @@
                 android:text=" 99,9"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/textView25"
-                app:layout_constraintStart_toEndOf="@+id/textView25"
-                app:layout_constraintTop_toTopOf="@+id/textView25" />
+                app:layout_constraintBottom_toBottomOf="@+id/aprosel_est_precioxunidad"
+                app:layout_constraintStart_toEndOf="@+id/aprosel_est_precioxunidad"
+                app:layout_constraintTop_toTopOf="@+id/aprosel_est_precioxunidad" />
 
             <TextView
-                android:id="@+id/textView44"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -280,8 +276,8 @@
                 android:layout_marginTop="24dp"
                 android:background="@drawable/redondo2"
                 android:text="@string/boton_actualizar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline9"
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintStart_toStartOf="@+id/guideline5"
                 app:layout_constraintTop_toBottomOf="@+id/aprosel_tv_unidad" />
 
             <androidx.constraintlayout.widget.Guideline

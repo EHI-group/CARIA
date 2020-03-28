@@ -5,20 +5,13 @@ import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.mateocvas.caria.adapters.AdapterRecyclerMarket
 import com.mateocvas.caria.items.ItemProduct
-import kotlinx.android.synthetic.main.activity_basket.*
 
 
 class BascketActivity:AppCompatActivity() {
 
-    lateinit var fruver:ArrayList<ItemProduct>
-    lateinit var food:ArrayList<ItemProduct>
-    lateinit var medicinal:ArrayList<ItemProduct>
-
-    lateinit var Adapterfruver:AdapterRecyclerMarket
-    lateinit var Adapterfood:AdapterRecyclerMarket
-    lateinit var Adaptermedicinal:AdapterRecyclerMarket
-
-
+    private lateinit var fruver:ArrayList<ItemProduct>
+    private lateinit var food:ArrayList<ItemProduct>
+    private lateinit var medicinal:ArrayList<ItemProduct>
 
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {

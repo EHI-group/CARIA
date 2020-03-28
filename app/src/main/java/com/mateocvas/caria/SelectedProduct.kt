@@ -12,12 +12,12 @@ import kotlinx.android.synthetic.main.activity_product_selected.*
 class SelectedProduct   :AppCompatActivity(), View.OnClickListener {
 
     private lateinit var utiles: Funciones
-    lateinit var product:ItemProduct
-    lateinit var base:StorageReference
-    lateinit var warnings: Warinings
-    var total:Long=0
-    var totalUnidad:Long=0
-    var amount=1
+    private lateinit var product:ItemProduct
+    private lateinit var base:StorageReference
+    private lateinit var warnings: Warinings
+    private var total:Long=0
+    private var totalUnidad:Long=0
+    private var amount=1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,14 +40,14 @@ class SelectedProduct   :AppCompatActivity(), View.OnClickListener {
         totalUnidad=total
 
 
-        if(product.unidad.equals("1"))
-            this.aprosel_tv_descripcion.setText(("1 "+product.nombreMostrar+" (a granel)."))
+        if(product.unidad == "1")
+            this.aprosel_tv_descripcion.text = ("1 "+product.nombreMostrar+" (a granel).")
         else
-            this.aprosel_tv_descripcion.setText(("1 "+product.unidad+" de "+product.nombreMostrar+"."))
+            this.aprosel_tv_descripcion.text = ("1 "+product.unidad+" de "+product.nombreMostrar+".")
 
         //this.aprosel_tv_beneficios.setText(product.beneficios)
-        this.aprosel_tv_nombre.setText(product.nombreMostrar)
-        this.aprosel_tv_total.setText(product.precio)
+        this.aprosel_tv_nombre.text = product.nombreMostrar
+        this.aprosel_tv_total.text = product.precio
 
     }
 
@@ -65,8 +65,8 @@ class SelectedProduct   :AppCompatActivity(), View.OnClickListener {
             R.id.aprosel_ib_plus -> {
                 total+=totalUnidad
                 amount++
-                this.aprosel_tv_unidad.setText(amount.toString())
-                this.aprosel_tv_total.setText(utiles.formato(total))
+                this.aprosel_tv_unidad.text = amount.toString()
+                this.aprosel_tv_total.text = utiles.formato(total)
             }
 
             R.id.aprosel_ib_minus -> {
@@ -75,13 +75,13 @@ class SelectedProduct   :AppCompatActivity(), View.OnClickListener {
                 else{
                         total -= totalUnidad
                         amount--
-                        this.aprosel_tv_unidad.setText(amount.toString())
-                        this.aprosel_tv_total.setText(utiles.formato(total))
+                    this.aprosel_tv_unidad.text = amount.toString()
+                    this.aprosel_tv_total.text = utiles.formato(total)
                 }
             }
 
             R.id.aprosel_bt_ingresar -> {
-                val intent = getIntent()
+                val intent = intent
                 intent.putExtra("amount", amount)
                 intent.putExtra("name", product.nombre)
                 setResult(RESULT_OK, intent)

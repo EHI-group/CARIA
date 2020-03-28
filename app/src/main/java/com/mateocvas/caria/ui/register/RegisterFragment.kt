@@ -9,6 +9,7 @@ import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -26,45 +27,44 @@ import java.lang.Exception
 class RegisterFragment : Fragment() {
 
 
-
+    private val data=ArrayList<ItemOrder>()
+    private lateinit var comunication: Comunication
+    private lateinit var root:View
+    private lateinit var order:ItemOrder
+    private lateinit var adapter:AdapterRecyclerOrder
 
     override fun onResume() {
 
         super.onResume()
 
+
         view!!.isFocusableInTouchMode = true
         view!!.requestFocus()
-        view!!.setOnKeyListener(object : View.OnKeyListener {
-            override fun onKey(v: View, keyCode: Int, event: KeyEvent): Boolean {
+        view!!.setOnKeyListener { v, keyCode, event ->
+            if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
 
-                return if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    val dialog=Dialog(root.context)
-                    dialog.setContentView(R.layout.ventana_confirmar)
-                    dialog.getWindow()?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
-                    dialog.vconfirm_bt_cancelar.setOnClickListener {
-                        dialog.dismiss() }
-                    dialog.vconfirm_bt_aceptar.setOnClickListener {
-                        activity!!.finish()
+                val dialog=Dialog(root.context)
+                dialog.setContentView(R.layout.ventana_pedido_seleccionado)
+                dialog.setContentView(R.layout.ventana_confirmar)
+                dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+                dialog.vconfirm_bt_cancelar.setOnClickListener {
+                    dialog.dismiss()
+                }
+                dialog.vconfirm_bt_aceptar.setOnClickListener {
+                    activity!!.finish()
 
-                    }
-                    dialog.show()
+                }
+                dialog.show()
 
-                    true
+                true
 
-                } else false
-
-            }
-        })
+            } else false
+        }
     }
 
 
 
 
-    lateinit var model: RegisterViewModel
-    private lateinit var comunication: Comunication
-    private lateinit var root:View
-    private lateinit var adapter:AdapterRecyclerOrder
-    private lateinit var dialog: Dialog
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -88,17 +88,13 @@ class RegisterFragment : Fragment() {
             ViewModelProviders.of(this).get(Comunication::class.java)
         }?:throw Exception("Invalid Activity")
 
-        model = ViewModelProviders.of(this).get(RegisterViewModel::class.java)
-        adapter=AdapterRecyclerOrder(this,model.data,preferences.getInt("numero",0))
+        adapter=AdapterRecyclerOrder(this,data,preferences.getInt("numero",0))
 
-        dialog= Dialog(root.context)
-        dialog.setContentView(R.layout.ventana_pedido_seleccionado)
     }
 
 
-
     // settings for the recycler view
-    fun viewsSettings(){
+    private fun viewsSettings(){
 
 
         root.fregistro_rv_lista.setHasFixedSize(false)
@@ -108,24 +104,31 @@ class RegisterFragment : Fragment() {
     }
 
     // comunication (data pedidos) --- model(data) --- model (selected item)
-    fun setObservers(){
+    private fun setObservers(){
         comunication.com_data_pedidos.observe(this, Observer {
-        model.setData(it)
+            data.clear()
+            data.addAll(it)
+            adapter.notifyDataSetChanged()
         })
 
-        model.data_com.observe(this, Observer {
-        adapter.notifyDataSetChanged()
-        })
 
-        model.selected_item_com.observe(this, Observer {
-            openWindow(it)
-        })
+
+
+    }
+
+    fun setItemOrder(item:ItemOrder){
+        order=item
+        openWindow(item)
 
     }
 
     // starts dialog for a click event
-    fun openWindow(item:ItemOrder){
+    private fun openWindow(item:ItemOrder){
 
+
+        val dialog=Dialog(root.context)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.ventana_pedido_seleccionado)
         var adapter=AdapterRecyclerMarket(null,item.fruver )
         dialog.vpedsel_rv_fruver.adapter=adapter
         dialog.vpedsel_rv_fruver.setHasFixedSize(false)
@@ -145,7 +148,9 @@ class RegisterFragment : Fragment() {
         adapter.notifyDataSetChanged()
 
         dialog.abask_bt_enviar.setOnClickListener {
-            comunication.setOrder(model.selected_item)
+            comunication.setOrder(order)
+            dialog.dismiss()
+            Toast.makeText(root.context,root.context.getString(R.string.toast_cargado_en_carrito),Toast.LENGTH_LONG).show()
         }
 
         dialog.show()
